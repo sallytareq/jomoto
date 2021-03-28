@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-// import DisqusComments from '../components/disqus'
+
+import Head from 'next/head'
+
 import styles from '../../styles/Home.module.css'
+import Header from '../components/header'
+// import DisqusComments from '../components/disqus'
 
 const { BLOG_URL, CONTENT_API_KEY } = process.env;
 
@@ -49,13 +51,12 @@ function Post({ post }) {
   }
 
   return !router.isFallback ? (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>JoMoto</title>
         <link rel="icon" href="/icon1.ico" />
       </Head>
-
-      <Link href="/"><a>Home</a></Link>
+      <Header />
 
       <div dir="rtl">
         <img src={post[0].feature_image} className></img>

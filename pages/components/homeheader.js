@@ -3,24 +3,32 @@ import Navbar from 'react-bootstrap/Navbar'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import NestedList from './list'
-
-function Header() {
+function HomeHeader() {
+    const [scroll, setScroll] = useState(false);
     const [mobile, setMobile] = useState(false);
 
     useEffect(() => {
+      window.addEventListener("scroll", () => {
+        setScroll(window.scrollY > 50);
+      });
+    }, []);
+
+    useEffect(() => {
         window.addEventListener("resize", () => {
-            if (window.innerWidth <= 600) {
+            if(window.innerWidth <= 1024)
+            {
                 setMobile(true);
-            } else if (window.innerWidth >= 700) {
+            }else{
                 setMobile(false);
             }
         });
-    }, []);
+      }, []);
 
     return (
         <>
-            <div className={mobile ? "nav__mobile" : 'navbar__nav'}>
-                <Navbar className="navbar__normal" bg="dark" variant="dark">
+            <header className='header'>
+                <div className={mobile ? "nav__mobile": 'navbar__nav' }>
+                <Navbar className={scroll ? "navbar__normal" : "navbar__top"} bg="dark" variant="dark">
                     <Navbar.Brand className='navbar__brand' href="#home">JoMoto Blog</Navbar.Brand>
                     <Nav >
                         <Nav.Link className='navbar__navitem' href="/">Home</Nav.Link>
@@ -28,13 +36,15 @@ function Header() {
                         <Nav.Link className='navbar__navitem' href="#footer">Contact Us</Nav.Link>
                     </Nav>
                 </Navbar>
-            </div>
-            <div className={!mobile ? "nav__mobile" : 'navbar__mobile'}>
-                <NestedList />
-            </div>
+                </div>
+                <div className={!mobile ? "nav__mobile": 'navbar__mobile' }>
+                    <NestedList/>
+                </div>
+            </header>
+
         </>
 
     )
 }
 
-export default Header
+export default HomeHeader

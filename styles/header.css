@@ -1,0 +1,58 @@
+.navbar__normal, .navbar__top{
+    position: fixed;
+    top: 0;
+    width:100vw;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    font-weight: 700;
+}
+.navbar__normal{
+    background-color: black;
+    color: whitesmoke;
+}
+.navbar__top{
+    background-color:rgba(0, 0, 0, 0.021);
+    color:black;
+}
+.navbar__nav{
+    width: fit-content;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.navbar__mobile{
+    width: 100vw;
+    position: fixed;
+}
+
+.makeStyles-root-1{
+    max-width: inherit !important;
+    background-color: black !important;
+    color: whitesmoke;
+}
+
+.nav__mobile{
+    display: none;
+}
+.navbar__brand , .navbar__navitem{
+    width: fit-content;
+    margin: 0.4rem 1rem;
+}
+.header{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../public/img/hero.jpg');
+    background-position: 58%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* .header__hero{
+    top:0;
+    margin: -10rem 0;
+    width: 100%;
+} */
