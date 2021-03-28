@@ -1,41 +1,37 @@
+import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import NestedList from './list'
 
-function Header({props}){
+function Header() {
+    const [mobile, setMobile] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("resize", () => {
+            if (window.innerWidth <= 600) {
+                setMobile(true);
+            } else if (window.innerWidth >= 700) {
+                setMobile(false);
+            }
+        });
+    }, []);
 
     return (
         <>
-        <Navbar bg="light">
-            <Navbar.Brand href="#home">Brand link</Navbar.Brand>
-        </Navbar>
-        <br />
-        <Navbar bg="light">
-            <Navbar.Brand>Brand text</Navbar.Brand>
-        </Navbar>
-        <br />
-        <Navbar bg="dark">
-            <Navbar.Brand href="#home">
-            <img
-                src="/logo.svg"
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-                alt="React Bootstrap logo"
-            />
-            </Navbar.Brand>
-        </Navbar>
-        <br />
-        <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">
-            <img
-                alt=""
-                src="/logo.svg"
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-            />{' '}
-            React Bootstrap
-            </Navbar.Brand>
-        </Navbar>
+            <div className={mobile ? "nav__mobile" : 'navbar__nav'}>
+                <Navbar className="navbar__normal" bg="dark" variant="dark">
+                    <Navbar.Brand className='navbar__brand' href="/">JoMoto Blog</Navbar.Brand>
+                    <Nav >
+                        <Nav.Link className='navbar__navitem' href="/">Home</Nav.Link>
+                        <Nav.Link className='navbar__navitem' href="#features">About</Nav.Link>
+                        <Nav.Link className='navbar__navitem' href="#footer">Contact Us</Nav.Link>
+                    </Nav>
+                </Navbar>
+            </div>
+            <div className={!mobile ? "nav__mobile" : 'navbar__mobile__normal'}>
+                <NestedList />
+            </div>
         </>
 
     )
