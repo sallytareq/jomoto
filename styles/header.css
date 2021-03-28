@@ -3,7 +3,8 @@
     top: 0;
     width:100vw;
     margin: 0;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1rem;
+    padding-right: 2rem;
     display: flex;
     align-content: center;
     justify-content: space-between;
@@ -23,24 +24,30 @@
     align-content: center;
     justify-content: space-between;
 }
-
-.navbar__mobile{
+.navbar__mobile__top, .navbar__mobile__normal{
     width: 100vw;
     position: fixed;
+    font-weight: 700 !important;
 }
 
-.makeStyles-root-1{
-    max-width: inherit !important;
+.navbar__mobile__top .MuiList-root{
+    background-color: transparent !important;
+    max-width: unset !important;
+}
+.navbar__mobile__normal .MuiList-root{
     background-color: black !important;
     color: whitesmoke;
+    max-width: unset !important;
 }
-
+.MuiListItem-root{
+    width: 97vw !important;
+}
 .nav__mobile{
     display: none;
 }
 .navbar__brand , .navbar__navitem{
     width: fit-content;
-    margin: 0.4rem 1rem;
+    margin: 0rem 1rem;
 }
 .header{
     position: relative;

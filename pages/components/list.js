@@ -1,9 +1,13 @@
 import React from 'react';
+import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
+import CloseIcon from '@material-ui/icons/Close';
+import MenuIcon from '@material-ui/icons/Menu';
+import Link from 'next/link'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NestedList() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = useState(false);
 
     const handleClick = () => {
         setOpen(!open);
@@ -30,14 +34,18 @@ export default function NestedList() {
             aria-labelledby="nested-list-subheader"
             className={classes.root}
         >
-            <ListItem button onClick={handleClick}>
-                <ListItemText />
-                {/* {open ? <ExpandLess /> : <ExpandMore />} */}
+            <ListItem >
+                <Link href='/'>
+                    <ListItemText primary="JoMoto Blog" />
+                </Link>
+                {!open ? <MenuIcon button onClick={handleClick} /> : <CloseIcon button onClick={handleClick} />}
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     <ListItem button className={classes.nested}>
-                        <ListItemText primary="Home" />
+                        <Link href='/'>
+                            <ListItemText primary="Home" />
+                        </Link>
                     </ListItem>
                     <ListItem button className={classes.nested}>
                         <ListItemText primary="About" />

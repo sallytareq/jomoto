@@ -21,7 +21,7 @@ function Header() {
         <>
             <div className={mobile ? "nav__mobile" : 'navbar__nav'}>
                 <Navbar className="navbar__normal" bg="dark" variant="dark">
-                    <Navbar.Brand className='navbar__brand' href="#home">JoMoto Blog</Navbar.Brand>
+                    <Navbar.Brand className='navbar__brand' href="/">JoMoto Blog</Navbar.Brand>
                     <Nav >
                         <Nav.Link className='navbar__navitem' href="/">Home</Nav.Link>
                         <Nav.Link className='navbar__navitem' href="#features">About</Nav.Link>
@@ -29,7 +29,7 @@ function Header() {
                     </Nav>
                 </Navbar>
             </div>
-            <div className={!mobile ? "nav__mobile" : 'navbar__mobile'}>
+            <div className={!mobile ? "nav__mobile" : 'navbar__mobile__normal'}>
                 <NestedList />
             </div>
         </>
