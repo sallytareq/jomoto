@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import Footer from './components/footer'
+import Footer from '../components/footer'
 import styles from '../styles/Home.module.css'
-import HomeHeader from './components/homeheader'
+import HomeHeader from '../components/homeheader'
 const { BLOG_URL, CONTENT_API_KEY } = process.env
 
 export async function getStaticProps(context) {

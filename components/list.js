@@ -38,7 +38,7 @@ export default function NestedList() {
                 <Link href='/'>
                     <ListItemText primary="JoMoto Blog" />
                 </Link>
-                {!open ? <MenuIcon button onClick={handleClick} /> : <CloseIcon button onClick={handleClick} />}
+                {!open ? <MenuIcon onClick={handleClick} /> : <CloseIcon onClick={handleClick} />}
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>

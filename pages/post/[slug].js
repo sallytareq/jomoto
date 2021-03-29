@@ -4,7 +4,8 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 import styles from '../../styles/Home.module.css'
-import Header from '../components/header'
+import Footer from '../../components/footer'
+import Header from '../../components/header'
 // import DisqusComments from '../components/disqus'
 
 const { BLOG_URL, CONTENT_API_KEY } = process.env;
@@ -64,7 +65,7 @@ function Post({ post }) {
         <div dangerouslySetInnerHTML={{ __html: post[0].html }}></div>
       </div>
 
-
+      <Footer />
 
       {/* <DisqusComments post={post[0]} /> */}
 
