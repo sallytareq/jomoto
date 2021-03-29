@@ -12,7 +12,7 @@ function Footer() {
 
     return (
         <>
-            <footer className="footer">
+            <footer id="footer" className="footer">
                 <div className="footer__links">
                     <IconButton>
                         <Link href="https://www.facebook.com/jomotovlogs/">
@@ -40,8 +40,6 @@ function Footer() {
                     jomoto <CopyrightIcon /> 2021
                 </div>
                 <div className="footer__info">
-
-
                 </div>
             </footer>
         </>
