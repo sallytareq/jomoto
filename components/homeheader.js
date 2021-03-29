@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import NestedList from './list'
+
 function HomeHeader() {
     const [scroll, setScroll] = useState(false);
     const [mobile, setMobile] = useState(false);

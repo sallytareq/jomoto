@@ -1,21 +1,21 @@
 import Head from 'next/head'
-import Link from 'next/link'
-
 import Footer from '../components/footer'
 import styles from '../styles/Home.module.css'
+import SinglePost from '../components/post'
+import FeaturePost from '../components/featurePost'
 import HomeHeader from '../components/homeheader'
 const { BLOG_URL, CONTENT_API_KEY } = process.env
 
 export async function getStaticProps(context) {
 
   const res = await fetch(
-    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=title,slug,custom_excerpt`
+    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&limit=7&fields=title,slug,custom_excerpt,feature_image,html`
   )
 
   const data = await res.json()
   const posts = data.posts
-
-  console.log(posts)
+  const feature = posts.shift()
+  // console.log(posts)
 
   if (!posts) {
     return {
@@ -27,34 +27,31 @@ export async function getStaticProps(context) {
   }
 
   return {
-    props: { posts },
+    props: { posts, feature },
     revalidate: 10,
   }
 }
 
-export default function Home({ posts }) {
-    return (
-      <div className={styles.container}>
-        <Head>
-          <title>JoMoto</title>
-          <link rel="icon" href="/icon1.ico" />
-        </Head>
-        <HomeHeader/>
-        <main className={styles.main}>
+export default function Home(props) {
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>JoMoto</title>
+        <link rel="icon" href="/icon1.ico" />
+      </Head>
+      <HomeHeader />
+      <main className={styles.main}>
 
-          <h1 className={styles.title}>JoMoto Blog</h1>
+        <h1 className={styles.title}>JoMoto Blog</h1>
+        <FeaturePost post={props.feature} />
+        <div className="post">
+          {props.posts.map((post, index) => (
+            <SinglePost post={post} key={index} />
+          ))}
+        </div>
 
-          <ul dir="rtl">
-            {posts.map((post) => (
-              <li key={post.slug}>
-                <Link href="/post/[slug]" as={`/post/${post.slug}`}>
-                  <a>{post.title}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </main>
-        <Footer />
-      </div>
-    )
-  }
+      </main>
+      <Footer />
+    </div>
+  )
+}
