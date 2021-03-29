@@ -1,0 +1,21 @@
+.single{
+    width: calc(100vw - (100vw - 100%));
+    height: calc(100vh - (100vh - 100%));
+    display: flex;
+    padding: 4rem;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.single__img{
+    height: 70vh;
+    width: auto;
+    z-index: -1;
+    margin: auto;
+    margin-top: 5.5rem;
+}
+.single__content{
+    width: calc(60vw - (100vw - 100%));
+    min-width: 30rem;
+}

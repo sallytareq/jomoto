@@ -59,10 +59,12 @@ function Post({ post }) {
       </Head>
       <Header />
 
-      <div dir="rtl">
-        <img src={post[0].feature_image} className></img>
-        <h1> {post[0].title} </h1>
-        <div dangerouslySetInnerHTML={{ __html: post[0].html }}></div>
+      <div dir="rtl" className="single">
+        <div className="single__content">
+          <h1> {post[0].title} </h1>
+          <div dangerouslySetInnerHTML={{ __html: post[0].html }}></div>
+        </div>
+        <img src={post[0].feature_image} className="single__img"></img>
       </div>
 
       <Footer />
