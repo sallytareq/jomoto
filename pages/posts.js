@@ -1,14 +1,15 @@
 import Footer from '../components/footer'
 import Header from '../components/header'
-const { BLOG_URL, CONTENT_API_KEY } = process.env
 import React from 'react';
-import { DataGrid, GridRowsProp, GridColDef } from '@material-ui/data-grid';
+import Table from 'react-bootstrap/Table'
+import Link from 'next/link'
 
+const { BLOG_URL, CONTENT_API_KEY } = process.env
 
 export async function getStaticProps(context) {
 
   const res = await fetch(
-    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=title,slug,created_at`
+    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=title,slug,published_at`
   )
 
   const data = await res.json()
@@ -30,24 +31,30 @@ export async function getStaticProps(context) {
 }
 
 export default function Home({ posts }) {
-  const data = []
-  posts.map((post, index) => (
-    data.push({id: index, article: posts.title , date: new Date(Date.parse( posts.created_at)).toDateString()})
-  ))
-  console.log(posts.created_at);
-  // const rows: GridRowsProp = [
-  //   { id: 1, article: 'Hello', date: 'World' },
-  // ];
-  
-  // const columns: GridColDef[] = [
-  //   { field: 'col1', headerName: 'Column 1', width: 150 },
-  //   { field: 'col2', headerName: 'Column 2', width: 150 },
-  // ];
-  
+
   return (
     <div >
       <Header home={false} />
-      <main >
+      <main className="single" >
+        <Table striped bordered hover variant="dark">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {posts.map((post) => (
+              <tr dir="rtl">
+                <td>{new Date(Date.parse(post.published_at)).toDateString().split(/ (.*)/)[1]}</td>
+                <Link href="/post/[slug]" as={`/post/${post.slug}`}>
+                  <td>{post.title}</td>
+                </Link>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
 
       </main>
       <Footer />
