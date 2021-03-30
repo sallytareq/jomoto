@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 import styles from '../../styles/Home.module.css'
+import Skeleton from '@material-ui/lab/Skeleton';
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 // import DisqusComments from '../components/disqus'
@@ -51,7 +52,7 @@ function Post({ post }) {
     setEnableLoadComments(false)
   }
 
-  return !router.isFallback ? (
+  return false ? (
     <div>
       <Head>
         <title>JoMoto</title>
@@ -73,7 +74,39 @@ function Post({ post }) {
 
     </div >
   ) : (
-    <h1>Loading..</h1>
+    <>
+      <Head>
+        <title>JoMoto</title>
+        <link rel="icon" href="/icon1.ico" />
+      </Head>
+      <Header />
+      <div dir="rtl" className="single">
+        <div className="single__content">
+          <h1> <Skeleton variant="text" /></h1>
+          <div>
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+            <Skeleton variant="text" />
+          </div>
+        </div>
+        <Skeleton variant="rect" width={350} height={350} className="single__img" />
+      </div>
+      <Footer />
+    </>
   )
 }
 
