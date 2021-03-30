@@ -39,18 +39,17 @@ export default function Home({ posts }) {
         <Table striped bordered hover variant="dark">
           <thead>
             <tr>
-              <th>#</th>
-              <th>First Name</th>
-
+              <th>Name</th>
+              <th>Date Published</th>
             </tr>
           </thead>
           <tbody>
-            {posts.map((post) => (
+            {posts.map((post,index) => (
               <tr dir="rtl">
-                <td>{new Date(Date.parse(post.published_at)).toDateString().split(/ (.*)/)[1]}</td>
                 <Link href="/post/[slug]" as={`/post/${post.slug}`}>
                   <td>{post.title}</td>
                 </Link>
+                <td>{new Date(Date.parse(post.published_at)).toDateString().split(/ (.*)/)[1]}</td>
               </tr>
             ))}
           </tbody>
