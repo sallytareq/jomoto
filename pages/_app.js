@@ -6,6 +6,7 @@ import '../styles/header.css'
 import '../styles/footer.css'
 import '../styles/post.css'
 import '../styles/single.css'
+import '../styles/directory.css'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
