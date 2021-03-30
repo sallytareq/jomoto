@@ -25,7 +25,7 @@ export async function getStaticProps({ params }) {
   );
 
   const data = await res.json();
-  const post = data.posts;
+  const post = data.posts.shift();
   if (!post) {
     return {
       redirect: {
@@ -52,25 +52,25 @@ function Post({ post }) {
     setEnableLoadComments(false)
   }
 
-  return false ? (
+  return !router.fallback || !post ? (
     <div>
       <Head>
         <title>JoMoto</title>
         <link rel="icon" href="/icon1.ico" />
       </Head>
-      <Header />
+      <Header home={false} />
 
       <div dir="rtl" className="single">
         <div className="single__content">
-          <h1> {post[0].title} </h1>
-          <div dangerouslySetInnerHTML={{ __html: post[0].html }}></div>
+          <h1> {post.title} </h1>
+          <div dangerouslySetInnerHTML={{ __html: post.html }}></div>
         </div>
-        <img src={post[0].feature_image} className="single__img"></img>
+        <img src={post.feature_image} className="single__img"></img>
       </div>
 
       <Footer />
 
-      {/* <DisqusComments post={post[0]} /> */}
+      {/* <DisqusComments post={post} /> */}
 
     </div >
   ) : (

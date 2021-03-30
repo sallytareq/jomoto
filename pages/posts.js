@@ -1,7 +1,4 @@
 import Footer from '../components/footer'
-import styles from '../styles/Home.module.css'
-import SinglePost from '../components/post'
-import FeaturePost from '../components/featurePost'
 import Header from '../components/header'
 const { BLOG_URL, CONTENT_API_KEY } = process.env
 
@@ -33,17 +30,9 @@ export async function getStaticProps(context) {
 
 export default function Home(props) {
   return (
-    <div className={styles.container}>
-      <Header home={true} />
-      <main className={styles.main}>
-
-        <h1 className={styles.title}>JoMoto Blog</h1>
-        <FeaturePost post={props.feature} />
-        <div className="post">
-          {props.posts.map((post, index) => (
-            <SinglePost post={post} key={index} />
-          ))}
-        </div>
+    <div >
+      <Header home={false} />
+      <main >
 
       </main>
       <Footer />
