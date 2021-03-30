@@ -28,10 +28,10 @@ export async function getStaticProps({ params }) {
   const post = data.posts.shift();
   if (!post) {
     return {
+      notFound: true,
       redirect: {
         destination: '/',
         permanent: false,
-        notFound: true,
       },
     }
   }
