@@ -36,7 +36,7 @@ function Header(props) {
                         <Nav >
                             <Nav.Link className='navbar__navitem' href="/">Home</Nav.Link>
                             <Nav.Link className='navbar__navitem' href="/posts">Posts</Nav.Link>
-                            <Nav.Link className='navbar__navitem' href="#features">About</Nav.Link>
+                            <Nav.Link className='navbar__navitem' href="/about">About</Nav.Link>
                             <Nav.Link className='navbar__navitem' href="#footer">Contact Us</Nav.Link>
                         </Nav>
                     </Navbar>
