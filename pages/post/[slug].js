@@ -10,7 +10,7 @@ import Header from '../../components/header'
 
 const { BLOG_URL, CONTENT_API_KEY } = process.env;
 
-export const getServerSideProps = async (params) => {
+export const getServerSideProps = async ({params}) => {
   const res = await fetch(
     `${BLOG_URL}/ghost/api/v3/content/posts/slug/${params.slug}/?key=${CONTENT_API_KEY}&fields=title,html,feature_image,`
   );
