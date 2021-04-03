@@ -55,10 +55,6 @@ function Post({ post }) {
 
   return !router.fallback || !post ? (
     <div>
-      <Head>
-        <title>JoMoto</title>
-        <link rel="icon" href="/icon1.ico" />
-      </Head>
       <Header home={false} />
 
       <div dir="rtl" className="single">
