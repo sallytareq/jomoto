@@ -48,6 +48,11 @@ export default function NestedList() {
                         </Link>
                     </ListItem>
                     <ListItem button className={classes.nested}>
+                    <Link href='/posts'>
+                            <ListItemText primary="Posts" />
+                        </Link>
+                    </ListItem>
+                    <ListItem button className={classes.nested}>
                         <ListItemText primary="About" />
                     </ListItem>
                     <ListItem button className={classes.nested}>

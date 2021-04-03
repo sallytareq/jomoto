@@ -1,9 +1,8 @@
-import Head from 'next/head'
 import Footer from '../components/footer'
 import styles from '../styles/Home.module.css'
 import SinglePost from '../components/post'
 import FeaturePost from '../components/featurePost'
-import HomeHeader from '../components/homeheader'
+import Header from '../components/header'
 const { BLOG_URL, CONTENT_API_KEY } = process.env
 
 export async function getStaticProps(context) {
@@ -35,11 +34,7 @@ export async function getStaticProps(context) {
 export default function Home(props) {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>JoMoto</title>
-        <link rel="icon" href="/icon1.ico" />
-      </Head>
-      <HomeHeader />
+      <Header home={true} />
       <main className={styles.main}>
 
         <h1 className={styles.title}>JoMoto Blog</h1>
