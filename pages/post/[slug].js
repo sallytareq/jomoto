@@ -11,29 +11,29 @@ import Header from '../../components/header'
 
 const { BLOG_URL, CONTENT_API_KEY } = process.env;
 
-// export const getStaticPaths = async () => {
-
-//   return {
-//     paths: [],
-//     fallback: true,
-//   }
-// }
-
 export const getStaticPaths = async () => {
-  // you can get how many ever postIds are know ahead of time 
-  // and return as paths with fallback set to true
-  const posts = await fetch(
-    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=slug`
-  )
-
-  const paths = posts.map(post => { params: { slug: post.slug.toString() } })
 
   return {
-    paths,
-    fallback: true
+    paths: [],
+    fallback: true,
   }
-
 }
+
+// export const getStaticPaths = async () => {
+//   // you can get how many ever postIds are know ahead of time 
+//   // and return as paths with fallback set to true
+//   const posts = await fetch(
+//     `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=slug`
+//   )
+
+//   const paths = posts.map(post => { params: { slug: post.slug.toString() } })
+
+//   return {
+//     paths,
+//     fallback: true
+//   }
+
+// }
 
 export const getServerSideProps = async (context) => {
   const res = await fetch(
