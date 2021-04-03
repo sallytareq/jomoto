@@ -10,25 +10,24 @@
     justify-content: space-between;
     font-weight: 700;
 }
+.navbar__mobile .navbar__normal, .navbar__mobile .navbar__top{
+    padding: 0;
+}
 .navbar__normal{
     background-color: black;
-    color: whitesmoke impo !important;
 }
 .navbar__top{
     background-color:rgba(0, 0, 0, 0.021);
     color:black;
+}
+.nav__hidden{
+    display: none;
 }
 .navbar__nav{
     width: fit-content;
     display: flex;
     align-content: center;
     justify-content: space-between;
-}
-.MuiListItem-root{
-    width: 97vw !important;
-}
-.nav__hidden{
-    display: none;
 }
 .navbar__brand , .navbar__navitem{
     width: fit-content;
@@ -49,13 +48,6 @@
 .MuiList-root , .MuiListItem-root , .MuiTypography-root{
     background: transparent !important;
     font: inherit !important;
-    padding: 0 !important;
-    width: calc(100vw - (100vw - 100%));
-    margin: 0 i !important;
-}
-
-.header .MuiSvgIcon-root , .header__home .MuiSvgIcon-root{
-    margin-right: 5vw !important;
 }
 .navbar__mobile .MuiListItem-root .MuiListItemText-root , .navbar__mobile .MuiSvgIcon-root , .navbar__mobile .MuiListItem-root .MuiListItemText-root , .navbar__mobile .MuiSvgIcon-root {
     color: whitesmoke !important;
@@ -74,4 +66,8 @@
 }
 .navbar__mobile .navbar__top .MuiCollapse-container .MuiListItem-root .MuiListItemText-root:hover {
     color: rgba(0, 0, 0, 0.75) !important;
+}
+.navbar__mobile .MuiList-root {
+    max-width: 100%;
+    width: 100%;
 }
