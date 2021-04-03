@@ -21,14 +21,14 @@ export const getStaticPaths = async () => {
 
 export async function getStaticProps({ params }) {
   const res = await fetch(
-    `${BLOG_URL}/ghost/api/v3/content/posts/slug/${params.slug}/?key=${CONTENT_API_KEY}&fields=title,slug,html,feature_image,`
+    `${BLOG_URL}/ghost/api/v3/content/posts/slug/${params.slug}/?key=${CONTENT_API_KEY}&fields=title,html,feature_image,`
   );
 
   const data = await res.json();
   const post = data.posts.shift();
   if (!post) {
     return {
-      notFound: true,
+      fallback: true,
       redirect: {
         destination: '/',
         permanent: false,
@@ -48,10 +48,6 @@ function Post({ post }) {
   const [enableLoadComments, setEnableLoadComments] = useState(true)
 
   const router = useRouter();
-
-  function loadComments() {
-    setEnableLoadComments(false)
-  }
 
   return !router.fallback || !post ? (
     <div>
