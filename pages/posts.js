@@ -1,6 +1,6 @@
 import Footer from '../components/footer'
 import Header from '../components/header'
-// import ControlledCarousel from '../components/carousel'
+import ControlledCarousel from '../components/carousel'
 import React from 'react';
 import Table from 'react-bootstrap/Table'
 import Link from 'next/link'
@@ -54,7 +54,7 @@ export default function Home({ posts }) {
             ))}
           </tbody>
         </Table>
-        {/* <ControlledCarousel posts={posts} /> */}
+        <ControlledCarousel posts={posts} />
       </main>
       <Footer />
     </div>

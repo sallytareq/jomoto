@@ -3,37 +3,12 @@ import { useRouter } from 'next/router'
 
 import Head from 'next/head'
 
-import styles from '../../styles/Home.module.css'
 import Skeleton from '@material-ui/lab/Skeleton';
 import Footer from '../../components/footer'
 import Header from '../../components/header'
 // import DisqusComments from '../components/disqus'
 
 const { BLOG_URL, CONTENT_API_KEY } = process.env;
-
-// export const getStaticPaths = async () => {
-
-//   return {
-//     paths: [],
-//     fallback: true,
-//   }
-// }
-
-// export const getStaticPaths = async () => {
-//   // you can get how many ever postIds are know ahead of time 
-//   // and return as paths with fallback set to true
-//   const posts = await fetch(
-//     `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=slug`
-//   )
-
-//   const paths = posts.map(post => { params: { slug: post.slug.toString() } })
-
-//   return {
-//     paths,
-//     fallback: true
-//   }
-
-// }
 
 export const getServerSideProps = async (params) => {
   const res = await fetch(
