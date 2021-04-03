@@ -24,21 +24,6 @@
     align-content: center;
     justify-content: space-between;
 }
-.navbar__mobile__top, .navbar__mobile__normal{
-    width: calc(100vw - (100vw - 100%));
-    position: fixed;
-    font-weight: 700 !important;
-}
-
-.navbar__mobile__top .MuiList-root{
-    background-color: transparent !important;
-    max-width: unset !important;
-}
-.navbar__mobile__normal .MuiList-root{
-    background-color: black !important;
-    color: whitesmoke;
-    max-width: unset !important;
-}
 .MuiListItem-root{
     width: 97vw !important;
 }
@@ -71,14 +56,22 @@
 
 .header .MuiSvgIcon-root , .header__home .MuiSvgIcon-root{
     margin-right: 5vw !important;
-    color: whitesmoke;
 }
-.MuiListItem-root .MuiListItemText-root{
+.navbar__mobile .MuiListItem-root .MuiListItemText-root , .navbar__mobile .MuiSvgIcon-root , .navbar__mobile .MuiListItem-root .MuiListItemText-root , .navbar__mobile .MuiSvgIcon-root {
     color: whitesmoke !important;
 }
-.MuiCollapse-container .MuiListItem-root .MuiListItemText-root{
-    color: rgba(255, 255, 255, 0.55) !important;
+.navbar__mobile .MuiCollapse-container .MuiListItem-root .MuiListItemText-root{
+    color: rgba(255, 255, 255, 0.65) !important;
 }
-.MuiCollapse-container .MuiListItem-root .MuiListItemText-root:hover {
-    color: rgba(255, 255, 255, 0.75) !important;
+.navbar__mobile .MuiCollapse-container .MuiListItem-root .MuiListItemText-root:hover {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+.navbar__mobile .navbar__top .MuiListItem-root .MuiListItemText-root , .navbar__mobile .navbar__top .MuiSvgIcon-root , .navbar__mobile .navbar__top .MuiListItem-root .MuiListItemText-root , .navbar__mobile .navbar__top .MuiSvgIcon-root {
+    color: black !important;
+}
+.navbar__mobile .navbar__top .MuiCollapse-container .MuiListItem-root .MuiListItemText-root{
+    color: rgba(0, 0, 0, 0.55) !important;
+}
+.navbar__mobile .navbar__top .MuiCollapse-container .MuiListItem-root .MuiListItemText-root:hover {
+    color: rgba(0, 0, 0, 0.75) !important;
 }

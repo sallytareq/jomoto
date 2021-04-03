@@ -45,7 +45,7 @@ export default function Home({ posts }) {
           </thead>
           <tbody>
             {posts.map((post, index) => (
-              <tr>
+              <tr key={index}>
                 <td>{new Date(Date.parse(post.published_at)).toDateString().split(/ (.*)/)[1]}</td>
                 <Link href="/post/[slug]" as={`/post/${post.slug}`}>
                   <td>{post.title}</td>
