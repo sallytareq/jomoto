@@ -30,7 +30,7 @@ function Header(props) {
                 <link rel="icon" href="/icon1.ico" />
             </Head>
             <header className={props.home ? 'header__home' : 'header'}>
-                <div className={mobile ? "nav__mobile" : 'navbar__nav'}>
+                <div className={mobile ? "nav__hidden" : 'navbar__nav'}>
                     <Navbar className={props.home ? (scroll ? "navbar__normal" : "navbar__top") : "navbar__normal"} variant={props.home? (scroll ? "dark" : "light"):"dark"}>
                         <Navbar.Brand className='navbar__brand' href="#home">JoMoto Blog</Navbar.Brand>
                         <Nav >
@@ -41,8 +41,8 @@ function Header(props) {
                         </Nav>
                     </Navbar>
                 </div>
-                <div className={!mobile ? "nav__mobile" : 'navbar__mobile'} >
-                    <div className={scroll ? "navbar__mobile__normal" : "navbar__mobile__top"}>
+                <div className={!mobile ? "nav__hidden" : 'navbar__mobile'} >
+                    <div className={props.home ? (scroll ? "navbar__normal" : "navbar__top") : "navbar__normal"}>
                         <NestedList />
                     </div>
                 </div>
