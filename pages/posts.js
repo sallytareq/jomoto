@@ -1,15 +1,19 @@
+import React from 'react';
+import { useState } from 'react';
+
+import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
+
+import Link from 'next/link'
+
+import SearchIcon from '@material-ui/icons/Search';
+
 import Footer from '../components/footer'
 import Header from '../components/header'
 import ControlledCarousel from '../components/carousel'
-import React from 'react';
-import Table from 'react-bootstrap/Table'
-import Link from 'next/link'
-import SearchIcon from '@material-ui/icons/Search';
-import Button from 'react-bootstrap/Button'
-import { useEffect } from 'react'
-import { useState } from 'react';
-const { BLOG_URL, CONTENT_API_KEY } = process.env
 
+const { BLOG_URL, CONTENT_API_KEY } = process.env
+let results = [];
 
 export async function getServerSideProps(context) {
 
@@ -19,7 +23,7 @@ export async function getServerSideProps(context) {
 
   const data = await res.json()
   const posts = data.posts
-  // console.log(posts)
+
   if (!posts) {
     return {
       redirect: {
@@ -37,16 +41,17 @@ export async function getServerSideProps(context) {
 export default function Home({ posts }) {
   const [formData, setFormData] = useState();
   const [submitted, setSubmitted] = useState(false);
+  const [resultExists , setResultExists] = useState(false);
   const allPosts = {posts}.posts;
-  let results = [];
   const handleChange = event => {
+    setResultExists(false);
     setSubmitted(false);
     setFormData(event.target.value);
   }
   
   const handleSubmit = event => {
     event.preventDefault();
-    // results = [];
+    results = [];
     
     allPosts.forEach(post => {
       let exists = false;
@@ -60,12 +65,12 @@ export default function Home({ posts }) {
       }
     });
     
+    if (results.length > 0){
+      setResultExists(true)
+    }
     setSubmitted(true)
-    console.log(results)
   }
   
-  if(submitted){console.log("HELLOOOOOOOOOOOO",results)}
-
   return (
     <div >
       <Header home={false} />
@@ -94,7 +99,7 @@ export default function Home({ posts }) {
                 </tr>
               ))
               :
-              (results? 
+              ((resultExists)? 
               results.map((post, index) => (
                 <tr key={index}>
                   <td>{new Date(Date.parse(post.published_at)).toDateString().split(/ (.*)/)[1]}</td>
@@ -104,7 +109,7 @@ export default function Home({ posts }) {
                 </tr>
               ))
               :
-              <tr><td>No results found</td></tr>
+              <tr><td colSpan="2">No results found</td></tr>
               )
             }
           </tbody>
