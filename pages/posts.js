@@ -94,7 +94,7 @@ export default function Home({ posts }) {
                 </tr>
               ))
               :
-              (!results? 
+              (results? 
               results.map((post, index) => (
                 <tr key={index}>
                   <td>{new Date(Date.parse(post.published_at)).toDateString().split(/ (.*)/)[1]}</td>

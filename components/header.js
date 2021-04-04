@@ -6,7 +6,7 @@ import NestedList from './list'
 import Head from 'next/head'
 
 function windowSize() {
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth <= 625) {
         return true
     } else if (window.innerWidth >= 700) {
         return false
