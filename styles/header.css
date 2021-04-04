@@ -10,40 +10,24 @@
     justify-content: space-between;
     font-weight: 700;
 }
+.navbar__mobile .navbar__normal, .navbar__mobile .navbar__top{
+    padding: 0;
+}
 .navbar__normal{
     background-color: black;
-    color: whitesmoke impo !important;
 }
 .navbar__top{
     background-color:rgba(0, 0, 0, 0.021);
     color:black;
+}
+.nav__hidden{
+    display: none;
 }
 .navbar__nav{
     width: fit-content;
     display: flex;
     align-content: center;
     justify-content: space-between;
-}
-.navbar__mobile__top, .navbar__mobile__normal{
-    width: calc(100vw - (100vw - 100%));
-    position: fixed;
-    font-weight: 700 !important;
-}
-
-.navbar__mobile__top .MuiList-root{
-    background-color: transparent !important;
-    max-width: unset !important;
-}
-.navbar__mobile__normal .MuiList-root{
-    background-color: black !important;
-    color: whitesmoke;
-    max-width: unset !important;
-}
-.MuiListItem-root{
-    width: 97vw !important;
-}
-.nav__mobile{
-    display: none;
 }
 .navbar__brand , .navbar__navitem{
     width: fit-content;
@@ -61,8 +45,29 @@
 .header{
     width: calc(100vw - (100vw - 100%));
 }
-/* .header__hero{
-    top:0;
-    margin: -10rem 0;
+.MuiList-root , .MuiListItem-root , .MuiTypography-root{
+    background: transparent !important;
+    font: inherit !important;
+}
+.navbar__mobile .MuiListItem-root .MuiListItemText-root , .navbar__mobile .MuiSvgIcon-root , .navbar__mobile .MuiListItem-root .MuiListItemText-root , .navbar__mobile .MuiSvgIcon-root {
+    color: whitesmoke !important;
+}
+.navbar__mobile .MuiCollapse-container .MuiListItem-root .MuiListItemText-root{
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+.navbar__mobile .MuiCollapse-container .MuiListItem-root .MuiListItemText-root:hover {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+.navbar__mobile .navbar__top .MuiListItem-root .MuiListItemText-root , .navbar__mobile .navbar__top .MuiSvgIcon-root , .navbar__mobile .navbar__top .MuiListItem-root .MuiListItemText-root , .navbar__mobile .navbar__top .MuiSvgIcon-root {
+    color: black !important;
+}
+.navbar__mobile .navbar__top .MuiCollapse-container .MuiListItem-root .MuiListItemText-root{
+    color: rgba(0, 0, 0, 0.55) !important;
+}
+.navbar__mobile .navbar__top .MuiCollapse-container .MuiListItem-root .MuiListItemText-root:hover {
+    color: rgba(0, 0, 0, 0.75) !important;
+}
+.navbar__mobile .MuiList-root {
+    max-width: 100%;
     width: 100%;
-} */
+}
