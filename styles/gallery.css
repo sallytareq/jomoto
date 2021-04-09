@@ -1,4 +1,21 @@
+.gallery{
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+    gap: 10px;
+
+}
+.gallery__selected{
+    width: 50%;
+}
+.gallery__card{
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
 .gallery__img{
-    max-width: 300px;
-    height: auto;
+    width: 100%;
+    /* max-width: 300px;
+    height: auto; */
 }
