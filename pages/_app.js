@@ -8,6 +8,7 @@ import '../styles/post.css'
 import '../styles/single.css'
 import '../styles/directory.css'
 import '../styles/gallery.css'
+import '../styles/error.css'
 
 function MyApp({ Component, pageProps }) {
   return(

@@ -1,17 +1,16 @@
-// import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-
-import ReactDOM from 'react-dom';
-import Footer from '../components/footer'
-import Header from '../components/header'
-import cloudinary from 'cloudinary'
-import Link from 'next/link'
 import { useState } from 'react';
-import { useEffect } from 'react'
+
+import Link from 'next/link'
+
+import cloudinary from 'cloudinary'
 import IconButton from '@material-ui/core/IconButton';
 import NavigateNextRoundedIcon from '@material-ui/icons/NavigateNextRounded';
 import NavigateBeforeRoundedIcon from '@material-ui/icons/NavigateBeforeRounded';
-const { CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUD_NAME } = process.env
 
+import Footer from '../components/footer'
+import Header from '../components/header'
+
+const { CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUD_NAME } = process.env
 
 export async function getServerSideProps() {
 
@@ -21,10 +20,14 @@ export async function getServerSideProps() {
         api_secret: CLOUDINARY_API_SECRET
     });
 
-    const data = await cloudinary.v2.api.resources({ max_results: 21 })
-    const images = data.resources
-
-    // console.log("IMAGES",images);
+    const data = await cloudinary.v2.api.resources({ max_results: 22 })
+    const allImages = data.resources
+    const images = []
+    allImages.map((image, index) => {
+        if (image.public_id.includes('gallery/')) {
+            images.push(image)
+        }
+    })
 
     if (!images) {
         return {
@@ -41,7 +44,7 @@ export async function getServerSideProps() {
 }
 
 export default function Gallery({ images }) {
-    // console.log(images[0]);
+
     const [selected, setSelected] = useState(0)
 
     const nextImage = () => {
@@ -70,7 +73,7 @@ export default function Gallery({ images }) {
     return (
         <div>
             <Header home={false} />
-                <div id='selected'></div>
+            <div id='selected'></div>
             <main>
                 <div className='gallery__hero' >
                     <IconButton>
@@ -82,17 +85,13 @@ export default function Gallery({ images }) {
                     </IconButton>
                 </div>
                 <div className='gallery'>
-                    {images.map((image, index) => {
-                        if (image.public_id.includes('gallery/')) {
-                            return (
-                                <Link href='#selected'>
-                                    <div className='gallery__card' >
-                                        <img src={image.secure_url} key={index} className='gallery__img' onClick={() => setSelected(index)} />
-                                    </div>
-                                </Link>
-                            )
-                        }
-                    })}
+                    {images.map((image, index) => (
+                        <Link href='#selected'>
+                            <div className='gallery__card' >
+                                <img src={image.secure_url} key={index} className='gallery__img' onClick={() => setSelected(index)} />
+                            </div>
+                        </Link>
+                    ))}
                 </div>
             </main>
             <Footer />
