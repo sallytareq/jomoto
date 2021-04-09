@@ -6,9 +6,9 @@ import NestedList from './list'
 import Head from 'next/head'
 
 function windowSize() {
-    if (window.innerWidth <= 625) {
+    if (window.innerWidth <= 725) {
         return true
-    } else if (window.innerWidth >= 700) {
+    } else if (window.innerWidth >= 726) {
         return false
     }
 }
@@ -36,6 +36,7 @@ function Header(props) {
                         <Nav >
                             <Nav.Link className='navbar__navitem' href="/">Home</Nav.Link>
                             <Nav.Link className='navbar__navitem' href="/posts">Posts</Nav.Link>
+                            <Nav.Link className='navbar__navitem' href="/gallery">Gallery</Nav.Link>
                             <Nav.Link className='navbar__navitem' href="/about">About</Nav.Link>
                             <Nav.Link className='navbar__navitem' href="#footer">Contact Us</Nav.Link>
                         </Nav>
