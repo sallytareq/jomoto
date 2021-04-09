@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import Footer from '../components/footer'
 import Header from '../components/header'
 import cloudinary from 'cloudinary'
+import Link from 'next/link'
 import { useState } from 'react';
 import { useEffect } from 'react'
 import IconButton from '@material-ui/core/IconButton';
@@ -69,8 +70,9 @@ export default function Gallery({ images }) {
     return (
         <div>
             <Header home={false} />
+                <div id='selected'></div>
             <main>
-                <div className='gallery__hero'>
+                <div className='gallery__hero' >
                     <IconButton>
                         <NavigateBeforeRoundedIcon onClick={prevImage} />
                     </IconButton>
@@ -83,9 +85,11 @@ export default function Gallery({ images }) {
                     {images.map((image, index) => {
                         if (image.public_id.includes('gallery/')) {
                             return (
-                                <div className='gallery__card' >
-                                    <img src={image.secure_url} key={index} className='gallery__img' onClick={() => setSelected(index)} />
-                                </div>
+                                <Link href='#selected'>
+                                    <div className='gallery__card' >
+                                        <img src={image.secure_url} key={index} className='gallery__img' onClick={() => setSelected(index)} />
+                                    </div>
+                                </Link>
                             )
                         }
                     })}
