@@ -1,0 +1,19 @@
+.error__img {
+    width: calc(100vw - (100vw - 100%));
+    height: auto;
+    /* position: fixed; */
+    margin-top: -8.2rem;
+    margin-bottom: -1px;
+    z-index: -1;
+    /* top: -37px; */
+}
+.error__text{
+    position: relative;
+    background: transparent;
+    color: whitesmoke;
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: inherit;
+    float: right;
+    margin: 6rem 5rem 0 0;
+}
