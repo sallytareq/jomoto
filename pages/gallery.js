@@ -20,8 +20,14 @@ export async function getServerSideProps() {
         api_secret: CLOUDINARY_API_SECRET
     });
 
-    const data = await cloudinary.v2.api.resources({ max_results: 21 })
-    const images = data.resources
+    const data = await cloudinary.v2.api.resources({ max_results: 22 })
+    const allImages = data.resources
+    const images = []
+    allImages.map((image, index) => {
+        if (image.public_id.includes('gallery/')) {
+            images.push(image)
+        }
+    })
 
     if (!images) {
         return {
@@ -67,7 +73,7 @@ export default function Gallery({ images }) {
     return (
         <div>
             <Header home={false} />
-                <div id='selected'></div>
+            <div id='selected'></div>
             <main>
                 <div className='gallery__hero' >
                     <IconButton>
@@ -79,17 +85,13 @@ export default function Gallery({ images }) {
                     </IconButton>
                 </div>
                 <div className='gallery'>
-                    {images.map((image, index) => {
-                        if (image.public_id.includes('gallery/')) {
-                            return (
-                                <Link href='#selected'>
-                                    <div className='gallery__card' >
-                                        <img src={image.secure_url} key={index} className='gallery__img' onClick={() => setSelected(index)} />
-                                    </div>
-                                </Link>
-                            )
-                        }
-                    })}
+                    {images.map((image, index) => (
+                        <Link href='#selected'>
+                            <div className='gallery__card' >
+                                <img src={image.secure_url} key={index} className='gallery__img' onClick={() => setSelected(index)} />
+                            </div>
+                        </Link>
+                    ))}
                 </div>
             </main>
             <Footer />
