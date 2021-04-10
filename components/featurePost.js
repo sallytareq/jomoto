@@ -8,10 +8,12 @@ function FeaturePost(props) {
                 <img src={props.post.feature_image} className="featurePost__img" />
             </Link>
             <div className="featurePost__info">
-                <Link href="/post/[slug]" as={`/post/${props.post.slug}`}>
+                <hr className='feature__line'/>
                     <h2>{props.post.title}</h2>
-                </Link>
-                <div className="featurePost__text" dangerouslySetInnerHTML={{ __html: props.post.html }}></div><span>...</span>
+                <div className="featurePost__text" dangerouslySetInnerHTML={{ __html: props.post.html }}></div>
+                {/* <Link href="/post/[slug]" as={`/post/${props.post.slug}`}>
+                <span>KEEP READING...</span>
+                </Link> */}
             </div>
         </div>
     )
