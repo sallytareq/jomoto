@@ -13,14 +13,15 @@ const { BLOG_URL, CONTENT_API_KEY } = process.env
 
 export async function getStaticProps(context) {
 
+  // Ghost API fetch of the 6 most recent posts
   const res = await fetch(
     `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&limit=6&fields=title,slug,custom_excerpt,feature_image,html`
   )
 
   const data = await res.json()
   const posts = data.posts
+  // select feature post
   const feature = posts.shift()
-  // console.log(posts)
 
   if (!posts) {
     return {
@@ -41,6 +42,7 @@ export default function Home(props) {
 
   const [mobile, setMobile] = useState(false);
 
+  // Window size response 
   useEffect(() => { setMobile(windowSize()) }, []);
   useEffect(() => { window.addEventListener("resize", () => setMobile(windowSize(1345))) }, []);
 
