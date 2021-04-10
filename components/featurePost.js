@@ -9,10 +9,11 @@ function FeaturePost(props) {
             </Link>
             <div className="featurePost__info">
                 <hr className='feature__line'/>
-                <Link href="/post/[slug]" as={`/post/${props.post.slug}`}>
                     <h2>{props.post.title}</h2>
-                </Link>
-                <div className="featurePost__text" dangerouslySetInnerHTML={{ __html: props.post.html }}></div><span>...</span>
+                <div className="featurePost__text" dangerouslySetInnerHTML={{ __html: props.post.html }}></div>
+                {/* <Link href="/post/[slug]" as={`/post/${props.post.slug}`}>
+                <span>KEEP READING...</span>
+                </Link> */}
             </div>
         </div>
     )
