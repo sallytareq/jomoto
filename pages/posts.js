@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useEffect } from 'react'
 
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
@@ -9,8 +10,10 @@ import Link from 'next/link'
 import SearchIcon from '@material-ui/icons/Search';
 
 import Footer from '../components/footer'
-import Header from '../components/header'
+import SinglePost from '../components/post'
+import SinglePostWide from '../components/postWide'
 import ControlledCarousel from '../components/carousel'
+import Header, { windowSize } from '../components/header'
 
 const { BLOG_URL, CONTENT_API_KEY } = process.env
 let results = [];
@@ -18,7 +21,7 @@ let results = [];
 export async function getServerSideProps(context) {
 
   const res = await fetch(
-    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=title,slug,published_at,feature_image&include=tags`
+    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=title,slug,published_at,feature_image,custom_excerpt&include=tags`
   )
 
   const data = await res.json()
@@ -40,81 +43,68 @@ export async function getServerSideProps(context) {
 
 export default function Home({ posts }) {
   const [formData, setFormData] = useState();
+  const [mobile, setMobile] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [resultExists , setResultExists] = useState(false);
-  const allPosts = {posts}.posts;
+  const [resultExists, setResultExists] = useState(false);
+
+  const allPosts = { posts }.posts;
+
+  useEffect(() => { setMobile(windowSize()) }, []);
+  useEffect(() => { window.addEventListener("resize", () => setMobile(windowSize(1040))) }, []);
+
   const handleChange = event => {
     setResultExists(false);
     setSubmitted(false);
     setFormData(event.target.value);
   }
-  
+
   const handleSubmit = event => {
     event.preventDefault();
     results = [];
-    
+
     allPosts.forEach(post => {
       let exists = false;
       post.tags.forEach(tag => {
-        if (tag.name.includes(formData)){
+        if (tag.name.includes(formData)) {
           exists = true
         }
       });
-      if (exists){
+      if (exists) {
         results.push(post)
       }
     });
-    
-    if (results.length > 0){
+
+    if (results.length > 0) {
       setResultExists(true)
     }
     setSubmitted(true)
   }
-  
+
   return (
     <div >
       <Header home={false} />
       <main className="directory" dir="rtl">
-        <form onSubmit={handleSubmit}>
-          <input id="search" name="search" type="text" placeholder="بحث" onChange={handleChange} />
-          <Button variant="dark" type="submit">
+        <form className='search__form' onSubmit={handleSubmit}>
+          <input id="search" name="search" type="text" placeholder="بحث" onChange={handleChange} className='search__input' />
+          <Button variant="dark" type="submit" className='search__button'>
             <SearchIcon />
           </Button>
         </form>
-        <Table striped bordered hover variant="dark" responsive>
-          <thead>
-            <tr>
-              <th>Published</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            { !submitted?
-              posts.map((post, index) => (
-                <tr key={index}>
-                  <td>{new Date(Date.parse(post.published_at)).toDateString().split(/ (.*)/)[1]}</td>
-                  <Link href="/post/[slug]" as={`/post/${post.slug}`}>
-                    <td>{post.title}</td>
-                  </Link>
-                </tr>
-              ))
-              :
-              ((resultExists)? 
+        <div className='directory__container'>
+          {!submitted ?
+            posts.map((post, index) => (
+              (!mobile)? <SinglePostWide post={post} key={index} /> : <SinglePost post={post} key={index} />
+            ))
+            :
+            ((resultExists) ?
               results.map((post, index) => (
-                <tr key={index}>
-                  <td>{new Date(Date.parse(post.published_at)).toDateString().split(/ (.*)/)[1]}</td>
-                  <Link href="/post/[slug]" as={`/post/${post.slug}`}>
-                    <td>{post.title}</td>
-                  </Link>
-                </tr>
+                (!mobile)? <SinglePostWide post={post} key={index} /> : <SinglePost post={post} key={index} />
               ))
               :
-              <tr><td colSpan="2">No results found</td></tr>
-              )
-            }
-          </tbody>
-        </Table>
-        <ControlledCarousel posts={posts} />
+              <div>No results found</div>
+            )
+          }
+        </div>
       </main>
       <Footer />
     </div>

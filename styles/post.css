@@ -27,6 +27,7 @@
 }
 .post__wide__container{
     flex-direction: row;
+    align-items: flex-start;
     width: 50%;
     height: 18rem;
     padding: 4rem;
@@ -34,7 +35,7 @@
 .post__info{
     width: 15rem;
 }
-.post__info p{
+.post__info p , .post__wide__info p{
     height: 6rem;
     overflow: hidden;
 }
