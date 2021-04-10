@@ -1,9 +1,11 @@
+import { useEffect } from 'react'
+import { useState } from 'react'
 import Footer from '../components/footer'
 import styles from '../styles/Home.module.css'
 import SinglePost from '../components/post'
 import SinglePostWide from '../components/postWide'
 import FeaturePost from '../components/featurePost'
-import Header from '../components/header'
+import Header, { windowSize } from '../components/header'
 const { BLOG_URL, CONTENT_API_KEY } = process.env
 
 export async function getStaticProps(context) {
@@ -33,28 +35,39 @@ export async function getStaticProps(context) {
 }
 
 export default function Home(props) {
+
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => { setMobile(windowSize()) }, []);
+  useEffect(() => { window.addEventListener("resize", () => setMobile(windowSize(1345))) }, []);
+
   return (
     <div className={styles.container}>
       <Header home={true} />
       <main className={styles.main}>
 
         <h1 className={styles.title}>JoMoto Blog</h1>
-        <FeaturePost post={props.feature} />
-        <div className="post">
-          {/* {props.posts.map((post, index) => (
-            <SinglePost post={post} key={index} />
-          ))} */}
-          <hr/>
-          <SinglePost post={props.posts[0]} />
-          <SinglePost post={props.posts[1]} />
-          <SinglePost post={props.posts[2]} />
-          <hr/>
-          <SinglePostWide post={props.posts[3]} />
-          <SinglePostWide post={props.posts[4]} />
-
-
-        </div>
-
+        {!mobile ? <FeaturePost post={props.feature} /> : <></>}
+        <hr />
+        {!mobile ?
+          (<div className="post">
+            <SinglePost post={props.posts[0]} />
+            <SinglePost post={props.posts[1]} />
+            <SinglePost post={props.posts[2]} />
+            <hr />
+            <SinglePostWide post={props.posts[3]} />
+            <SinglePostWide post={props.posts[4]} />
+          </div>)
+          :
+          (<div className="post">
+            <SinglePost post={props.feature} />
+            <SinglePost post={props.posts[0]} />
+            <SinglePost post={props.posts[1]} />
+            <SinglePost post={props.posts[2]} />
+            <SinglePost post={props.posts[3]} />
+            <SinglePost post={props.posts[4]} />
+          </div>)
+        }
       </main>
       <Footer />
     </div>

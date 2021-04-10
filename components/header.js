@@ -5,10 +5,10 @@ import { useState } from 'react'
 import NestedList from './list'
 import Head from 'next/head'
 
-function windowSize() {
-    if (window.innerWidth <= 725) {
+export function windowSize(width) {
+    if (window.innerWidth <= width) {
         return true
-    } else if (window.innerWidth >= 726) {
+    } else if (window.innerWidth >= width+1) {
         return false
     }
 }
@@ -21,7 +21,7 @@ function Header(props) {
     useEffect(() => { window.addEventListener("scroll", () => setScroll(window.scrollY > 50)) }, []);
 
     useEffect(() => { setMobile(windowSize()) }, []);
-    useEffect(() => { window.addEventListener("resize", () => setMobile(windowSize())) }, []);
+    useEffect(() => { window.addEventListener("resize", () => setMobile(windowSize(725))) }, []);
 
     return (
         <>
