@@ -23,6 +23,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - react-bootstrap
 - react-dom
 
+Some icons were provided by [icons8](icons8.com)
+
 ## Deployment
 
 This site is deployed via [Vercel](vercel.com)

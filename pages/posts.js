@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Button from 'react-bootstrap/Button';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 
 import Footer from '../components/footer';
 import SinglePost from '../components/post';
@@ -83,8 +83,8 @@ export default function Home({ posts }) {
       <main className="directory" dir="rtl">
         <form className="search__form" onSubmit={handleSubmit}>
           <input id="search" name="search" type="text" placeholder="بحث" onChange={handleChange} className="search__input" />
-          <Button variant="dark" type="submit" className="search__button">
-            <SearchIcon />
+          <Button variant="dark" type="submit" className="search__button" >
+            <img src="https://img.icons8.com/ios/25/ffffff/search--v1.png" />
           </Button>
         </form>
         <div className="directory__container">
@@ -103,11 +103,8 @@ export default function Home({ posts }) {
               : (
                 <div className="directory__notFound" dir="ltr">
                   <p>
-                    No results found for
-                    {formData}
-                    . Try another search
+                    No results found for {formData}. Try another search
                   </p>
-                  {' '}
                   <img src="https://img.icons8.com/fluent-systems-filled/96/000000/shift-up.png" />
                 </div>
               )
