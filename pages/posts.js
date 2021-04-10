@@ -101,7 +101,7 @@ export default function Home({ posts }) {
                 (!mobile)? <SinglePostWide post={post} key={index} /> : <SinglePost post={post} key={index} />
               ))
               :
-              <div>No results found</div>
+              <div className='directory__notFound' dir='ltr'><p>No results found for {formData}. Try another search</p> <img src="https://img.icons8.com/fluent-systems-filled/96/000000/shift-up.png"/></div>
             )
           }
         </div>
