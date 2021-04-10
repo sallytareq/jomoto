@@ -6,7 +6,7 @@
     flex-direction: row-reverse;
     margin: 4rem;
 }
-.post__container{
+.post__container , .post__wide__container{
     display: flex;
     flex-direction: column;
     width: 25rem;
@@ -14,14 +14,14 @@
     margin:auto;
     padding: 4rem;
 }
-.post__img, .featurePost__img{
+.post__img, .post__wide__img, .featurePost__img{
     border-radius: 0.2rem;
 }
-.post__img{
+.post__img , .post__wide__img{
     height: 15rem;
     width: 15rem;
 }
-.post__container p{
+.post__container p , .post__wide__container p{
     color: #6C7282;
 }
 .post__container h2{
