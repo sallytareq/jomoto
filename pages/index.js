@@ -48,13 +48,13 @@ export default function Home(props) {
 
         <h1 className={styles.title}>JoMoto Blog</h1>
         {!mobile ? <FeaturePost post={props.feature} /> : <></>}
-        <hr />
+        <hr className='home__line'/>
         {!mobile ?
           (<div className="post">
             <SinglePost post={props.posts[0]} />
             <SinglePost post={props.posts[1]} />
             <SinglePost post={props.posts[2]} />
-            <hr />
+            <hr className='home__line'/>
             <SinglePostWide post={props.posts[3]} />
             <SinglePostWide post={props.posts[4]} />
           </div>)
@@ -62,8 +62,10 @@ export default function Home(props) {
           (<div className="post">
             <SinglePost post={props.feature} />
             <SinglePost post={props.posts[0]} />
+            <hr className='home__line'/>
             <SinglePost post={props.posts[1]} />
             <SinglePost post={props.posts[2]} />
+            <hr className='home__line'/>
             <SinglePost post={props.posts[3]} />
             <SinglePost post={props.posts[4]} />
           </div>)

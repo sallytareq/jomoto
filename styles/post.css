@@ -1,3 +1,8 @@
+.home__line{
+    width: 80vw;
+    border: solid 1px #6C7282;
+    border-radius: 50%;
+}
 .post{
     display: flex;
     align-content: flex-start;
@@ -10,7 +15,7 @@
     display: flex;
     flex-direction: column;
     width: 25rem;
-    height: 30rem;
+    height: 30.3rem;
     margin:auto;
     padding: 4rem;
 }
@@ -18,6 +23,13 @@
     flex-direction: row;
     width: 50%;
     height: 18rem;
+}
+.post__info{
+    width: 15rem;
+}
+.post__info p{
+    height: 6rem;
+    overflow: hidden;
 }
 .post__wide__info{
     padding: 0.5rem 1.5rem 0 0;
@@ -34,6 +46,7 @@
 }
 .post__container h2{
     margin: 0.5rem 0 0 0;
+    font-size: 1.8rem;
 }
 
 .featurePost__container{
