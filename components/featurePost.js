@@ -8,6 +8,7 @@ function FeaturePost(props) {
                 <img src={props.post.feature_image} className="featurePost__img" />
             </Link>
             <div className="featurePost__info">
+                <hr className='feature__line'/>
                 <Link href="/post/[slug]" as={`/post/${props.post.slug}`}>
                     <h2>{props.post.title}</h2>
                 </Link>
