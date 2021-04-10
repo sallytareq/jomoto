@@ -26,7 +26,7 @@ export async function getServerSideProps() {
   const allImages = data.resources;
   const images = [];
 
-  // filteration of images
+  // filtration of images
   allImages.forEach((image) => {
     if (image.public_id.includes('gallery/')) {
       images.push(image);
@@ -75,17 +75,20 @@ export default function Gallery({ images }) {
   return (
     <div>
       <Header home={false} />
-      <div id="selected" />
       <main>
         <div className="gallery__hero">
           <IconButton>
             <NavigateBeforeRoundedIcon onClick={prevImage} />
           </IconButton>
-          <img src={selected ? images[selected].secure_url : images[0].secure_url} alt="selected" className="gallery__selected" />
+          <div className="gallery__hero__image">
+            <div id="selected" />
+            <img src={selected ? images[selected].secure_url : images[0].secure_url} alt="selected" className="gallery__selected" />
+          </div>
           <IconButton>
             <NavigateNextRoundedIcon onClick={nextImage} />
           </IconButton>
         </div>
+        <hr className='gallery__line'/>
         <div className="gallery">
           {images.map((image, index) => (
             <Link href="#selected">
