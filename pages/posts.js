@@ -1,31 +1,25 @@
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
-import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
-
-import Link from 'next/link'
-
+import Button from 'react-bootstrap/Button';
 import SearchIcon from '@material-ui/icons/Search';
 
-import Footer from '../components/footer'
-import SinglePost from '../components/post'
-import SinglePostWide from '../components/postWide'
-import ControlledCarousel from '../components/carousel'
-import Header, { windowSize } from '../components/header'
+import Footer from '../components/footer';
+import SinglePost from '../components/post';
+import SinglePostWide from '../components/postWide';
+import Header, { windowSize } from '../components/header';
 
-const { BLOG_URL, CONTENT_API_KEY } = process.env
+const { BLOG_URL, CONTENT_API_KEY } = process.env;
+
 let results = [];
 
-export async function getServerSideProps(context) {
-
+export async function getServerSideProps() {
+  // Ghost API fetch all posts
   const res = await fetch(
-    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=title,slug,published_at,feature_image,custom_excerpt&include=tags`
-  )
+    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=title,slug,published_at,feature_image,custom_excerpt&include=tags`,
+  );
 
-  const data = await res.json()
-  const posts = data.posts
+  const data = await res.json();
+  const { posts } = data;
 
   if (!posts) {
     return {
@@ -33,12 +27,12 @@ export async function getServerSideProps(context) {
         destination: '/',
         permanent: false,
       },
-    }
+    };
   }
 
   return {
     props: { posts },
-  }
+  };
 }
 
 export default function Home({ posts }) {
@@ -49,64 +43,78 @@ export default function Home({ posts }) {
 
   const allPosts = { posts }.posts;
 
-  useEffect(() => { setMobile(windowSize()) }, []);
-  useEffect(() => { window.addEventListener("resize", () => setMobile(windowSize(1040))) }, []);
+  // Window size response
+  useEffect(() => { setMobile(windowSize()); }, []);
+  useEffect(() => { window.addEventListener('resize', () => setMobile(windowSize(1040))); }, []);
 
-  const handleChange = event => {
+  // handle input change
+  const handleChange = (event) => {
     setResultExists(false);
     setSubmitted(false);
     setFormData(event.target.value);
-  }
+  };
 
-  const handleSubmit = event => {
+  // adjust search results based on input change
+  const handleSubmit = (event) => {
     event.preventDefault();
     results = [];
 
-    allPosts.forEach(post => {
+    allPosts.forEach((post) => {
       let exists = false;
-      post.tags.forEach(tag => {
+      post.tags.forEach((tag) => {
         if (tag.name.includes(formData)) {
-          exists = true
+          exists = true;
         }
       });
       if (exists) {
-        results.push(post)
+        results.push(post);
       }
     });
 
     if (results.length > 0) {
-      setResultExists(true)
+      setResultExists(true);
     }
-    setSubmitted(true)
-  }
+    setSubmitted(true);
+  };
 
   return (
-    <div >
+    <div>
       <Header home={false} />
       <main className="directory" dir="rtl">
-        <form className='search__form' onSubmit={handleSubmit}>
-          <input id="search" name="search" type="text" placeholder="بحث" onChange={handleChange} className='search__input' />
-          <Button variant="dark" type="submit" className='search__button'>
+        <form className="search__form" onSubmit={handleSubmit}>
+          <input id="search" name="search" type="text" placeholder="بحث" onChange={handleChange} className="search__input" />
+          <Button variant="dark" type="submit" className="search__button">
             <SearchIcon />
           </Button>
         </form>
-        <div className='directory__container'>
-          {!submitted ?
-            posts.map((post, index) => (
-              (!mobile)? <SinglePostWide post={post} key={index} /> : <SinglePost post={post} key={index} />
+        <div className="directory__container">
+          {!submitted
+            ? posts.map((post, index) => (
+              (!mobile)
+                ? <SinglePostWide post={post} key={index} />
+                : <SinglePost post={post} key={index} />
             ))
-            :
-            ((resultExists) ?
-              results.map((post, index) => (
-                (!mobile)? <SinglePostWide post={post} key={index} /> : <SinglePost post={post} key={index} />
+            : ((resultExists)
+              ? results.map((post, index) => (
+                (!mobile)
+                  ? <SinglePostWide post={post} key={index} />
+                  : <SinglePost post={post} key={index} />
               ))
-              :
-              <div className='directory__notFound' dir='ltr'><p>No results found for {formData}. Try another search</p> <img src="https://img.icons8.com/fluent-systems-filled/96/000000/shift-up.png"/></div>
-            )
-          }
+              : (
+                <div className="directory__notFound" dir="ltr">
+                  <p>
+                    No results found for
+                    {formData}
+                    . Try another search
+                  </p>
+                  {' '}
+                  <img src="https://img.icons8.com/fluent-systems-filled/96/000000/shift-up.png" />
+                </div>
+              )
+            )}
         </div>
       </main>
       <Footer />
     </div>
-  )
+  );
 }
