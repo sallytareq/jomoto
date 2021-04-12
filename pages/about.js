@@ -5,7 +5,7 @@ import EmailRoundedIcon from '@material-ui/icons/EmailRounded';
 
 export default function About(props) {
     return (
-        <div>
+        <div className='page__container'>
             <Header home={false} />
             <div className='about' dir="rtl">
                 < div className='about__info'>

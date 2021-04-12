@@ -73,7 +73,7 @@ export default function Gallery({ images }) {
   };
 
   return (
-    <div>
+    <div className='page__container'>
       <Header home={false} />
       <main>
         <div className="gallery__hero">
