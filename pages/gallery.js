@@ -22,7 +22,7 @@ export async function getServerSideProps() {
   });
 
   // Image backend fetch 20 images
-  const data = await cloudinary.v2.api.resources({ max_results: 22 });
+  const data = await cloudinary.v2.api.resources({ max_results: 23 });
   const allImages = data.resources;
   const images = [];
 

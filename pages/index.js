@@ -51,7 +51,7 @@ export default function Home(props) {
       <Header home={true} />
       <main className={styles.main}>
 
-        <h1 className={styles.title}>JoMoto Blog</h1>
+        {/* <h1 className={styles.title}>JoMoto Blog</h1> */}
         {!mobile ? (<><FeaturePost post={props.feature} /><hr className='home__line' /></>) : <></>}
         {!mobile ?
           (<div className="post">
