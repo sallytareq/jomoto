@@ -39,13 +39,12 @@ function Header(props) {
       <header className={props.home ? 'header__home' : 'header'}>
         <div className={mobile ? 'nav__hidden' : 'navbar__nav'}>
           <Navbar className={props.home ? (scroll ? 'navbar__normal' : 'navbar__top') : 'navbar__normal'} variant={props.home ? (scroll ? 'dark' : 'light') : 'dark'}>
-            <Navbar.Brand className="navbar__brand" href="#home">JoMoto Blog</Navbar.Brand>
+            <Navbar.Brand className="navbar__brand" href="/">JoMoto Blog</Navbar.Brand>
             <Nav>
               <Nav.Link className="navbar__navitem" href="/">Home</Nav.Link>
               <Nav.Link className="navbar__navitem" href="/posts">Posts</Nav.Link>
               <Nav.Link className="navbar__navitem" href="/gallery">Gallery</Nav.Link>
               <Nav.Link className="navbar__navitem" href="/about">About</Nav.Link>
-              <Nav.Link className="navbar__navitem" href="#footer">Contact Us</Nav.Link>
             </Nav>
           </Navbar>
         </div>

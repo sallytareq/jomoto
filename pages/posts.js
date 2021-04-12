@@ -78,7 +78,7 @@ export default function Home({ posts }) {
   };
 
   return (
-    <div>
+    <div className='page__container'>
       <Header home={false} />
       <main className="directory" dir="rtl">
         <form className="search__form" onSubmit={handleSubmit}>

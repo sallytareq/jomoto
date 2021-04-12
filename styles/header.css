@@ -15,6 +15,7 @@
 }
 .navbar__normal{
     background-color: black;
+    z-index: 1;
 }
 .navbar__top{
     background-color:rgba(0, 0, 0, 0.021);

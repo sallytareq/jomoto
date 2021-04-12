@@ -42,7 +42,7 @@ function Post({ post }) {
 
   // check existance of post and fetched data
   return !router.fallback || !post ? (
-    <div>
+    <div className='page__container'>
       <Header home={false} />
 
       <div dir="rtl" className="single">

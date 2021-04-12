@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: repeat(4 , 1fr);
     gap: 15px;
-    margin-bottom: 4rem;
+    padding-bottom: 10rem;
 }
 .gallery__hero{
     width: calc(100vw - (100vw - 100%));
@@ -25,6 +25,7 @@
     width: 80vw;
     border: solid 1px #b1b1b1;
     border-radius: 50%;
+    z-index: -1;
 }
 .gallery__selected{
     height: inherit;

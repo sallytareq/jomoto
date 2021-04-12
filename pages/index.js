@@ -47,7 +47,7 @@ export default function Home(props) {
   useEffect(() => { window.addEventListener("resize", () => setMobile(windowSize(1345))) }, []);
 
   return (
-    <div className={styles.container}>
+    <div className='page__container'>
       <Header home={true} />
       <main className={styles.main}>
 
