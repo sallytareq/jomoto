@@ -1,6 +1,7 @@
  
 import 'bootstrap/dist/css/bootstrap.css'
 
+import '../styles/about.css'
 import '../styles/directory.css'
 import '../styles/error.css'
 import '../styles/footer.css'
