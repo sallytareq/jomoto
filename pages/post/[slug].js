@@ -40,7 +40,7 @@ function Post({ post }) {
 
   const router = useRouter();
 
-  // check existance of post and fetched data
+  // check existence of post and fetched data
   return !router.fallback || !post ? (
     <div className='page__container'>
       <Header home={false} />
