@@ -11,7 +11,7 @@
 }
 .directory{
     margin: 6rem 0 0 0;
-    padding-bottom: 2.5rem;
+    padding-bottom: 6rem;
 }
 .directory__container{
     min-height: 56.2vh;
@@ -47,4 +47,21 @@
 
 .directory__container .post__wide__container{
     width: 40%;
+    margin-bottom: 0;
+}
+
+.directory__container .MuiSkeleton-text {
+    width: 80%;
+    margin-bottom: 1rem;
+}
+
+.directory__pages{
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
+}
+.directory__pages__button{
+    border: transparent;
+    background: transparent;
+    text-decoration: underline;
 }
