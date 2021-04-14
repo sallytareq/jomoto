@@ -7,7 +7,7 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     flex-direction: row;
-    padding: 9rem 0 9.5rem 0;
+    padding: 7rem 0 9.5rem 0;
 }
 
 .single__img{
@@ -29,7 +29,6 @@
 
 @media only screen and (max-width: 925px) {
     .single__content{
-        padding-top: 2rem;
         width: 80vw;
     }
 } 
