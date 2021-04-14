@@ -59,6 +59,9 @@
     padding: 2rem;
     width: 100%;
     text-align: center;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 .directory__pages__button{
     border: transparent;

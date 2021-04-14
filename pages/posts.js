@@ -37,41 +37,42 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ posts, totalPosts }) {
-  const pages = new Array(Math.ceil(totalPosts / 6)).fill(0)
   const [formData, setFormData] = useState();
   const [mobile, setMobile] = useState(false);
-  const [pageChange, setPageChange] = useState(false)
   const [submitted, setSubmitted] = useState(false);
+  const [postsInPage, setPostsInPage] = useState([]);
   const [resultExists, setResultExists] = useState(false);
-
-  let end;
-  let start;
+  
+  let numberOfPostsPerPage = 6;
   let allPosts = { posts }.posts;
   let allPostsCopy = [... { posts }.posts];
-  let pagesPosts = allPostsCopy.splice(0, 6)
-
+  allPostsCopy = allPostsCopy.splice(0, numberOfPostsPerPage);
+  const pages = new Array(Math.ceil(totalPosts / numberOfPostsPerPage)).fill(0);
+  
+  useEffect(() => { setPostsInPage(allPostsCopy); }, []);
 
   // handle pagination
   const pageNum = (event) => {
     event.preventDefault()
+
+    let end;
+    let start;
     let num = event.target.page.value
-    console.log(event.target.page.value);
     allPostsCopy = [... { posts }.posts];
-    if (num * 6 <= totalPosts) {
-      start = num * 6 - 6;
-      if (start + 5 < totalPosts) {
-        end = start + 6
+
+    if (num * numberOfPostsPerPage <= totalPosts) {
+      start = num * numberOfPostsPerPage - numberOfPostsPerPage;
+
+      if (start + (numberOfPostsPerPage-1) < totalPosts) {
+        end = numberOfPostsPerPage
       } else {
         end = totalPosts
       }
       allPostsCopy = allPostsCopy.splice(start, end)
     } else {
-      allPostsCopy = allPostsCopy.splice(totalPosts - ((num) * 6), totalPosts)
+      allPostsCopy = allPostsCopy.splice(totalPosts - ((num) * numberOfPostsPerPage), totalPosts)
     }
-    pagesPosts = allPostsCopy;
-    console.log(pagesPosts);
-
-    setPageChange(!pageChange)
+    setPostsInPage(allPostsCopy);
   }
 
   // Window size response
@@ -121,17 +122,11 @@ export default function Home({ posts, totalPosts }) {
         </form>
         <div className="directory__container">
           {!submitted
-            ? (!pageChange
-              ? pagesPosts.map((post, index) => (
-                (!mobile)
-                  ? <SinglePostWide post={post} key={index} />
-                  : <SinglePost post={post} key={index} />
-              )) :
-              pagesPosts.map((post, index) => (
-                (!mobile)
-                  ? <SinglePostWide post={post} key={index} />
-                  : <SinglePost post={post} key={index} />
-              )))
+            ? (postsInPage.map((post, index) => (
+              (!mobile)
+                ? <SinglePostWide post={post} key={index} />
+                : <SinglePost post={post} key={index} />
+            )))
             : ((resultExists)
               ? results.map((post, index) => (
                 (!mobile)
