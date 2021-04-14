@@ -7,7 +7,7 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     flex-direction: row;
-    padding: 7rem 0 9.5rem 0;
+    padding: 4rem 0 9.5rem 0;
 }
 
 .about__info{
@@ -16,7 +16,7 @@
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 50vw;
+    width: 55vw;
 }
 
 .about__img{
@@ -30,3 +30,10 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 925px) {
+    .about__info{
+        padding-top: 2rem;
+        width: 80vw;
+    }
+} 
