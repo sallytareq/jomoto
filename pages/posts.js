@@ -42,18 +42,19 @@ export default function Home({ posts, totalPosts }) {
   const [submitted, setSubmitted] = useState(false);
   const [postsInPage, setPostsInPage] = useState([]);
   const [resultExists, setResultExists] = useState(false);
-  
+
   let numberOfPostsPerPage = 6;
   let allPosts = { posts }.posts;
   let allPostsCopy = [... { posts }.posts];
   allPostsCopy = allPostsCopy.splice(0, numberOfPostsPerPage);
   const pages = new Array(Math.ceil(totalPosts / numberOfPostsPerPage)).fill(0);
-  
+
   useEffect(() => { setPostsInPage(allPostsCopy); }, []);
 
   // handle pagination
   const pageNum = (event) => {
     event.preventDefault()
+    window.scrollTo(0, 0)
 
     let end;
     let start;
@@ -63,7 +64,7 @@ export default function Home({ posts, totalPosts }) {
     if (num * numberOfPostsPerPage <= totalPosts) {
       start = num * numberOfPostsPerPage - numberOfPostsPerPage;
 
-      if (start + (numberOfPostsPerPage-1) < totalPosts) {
+      if (start + (numberOfPostsPerPage - 1) < totalPosts) {
         end = numberOfPostsPerPage
       } else {
         end = totalPosts
@@ -113,7 +114,8 @@ export default function Home({ posts, totalPosts }) {
   return { posts } || resultExists ? (
     <div className='page__container'>
       <Header home={false} />
-      <main className="directory" dir="rtl">
+      <div id="page"></div>
+      <main className="directory" dir="rtl" >
         <form className="search__form" onSubmit={handleSubmit}>
           <input id="search" name="search" type="text" placeholder="بحث" onChange={handleChange} className="search__input" />
           <Button variant="dark" type="submit" className="search__button" >
@@ -147,13 +149,15 @@ export default function Home({ posts, totalPosts }) {
           {!submitted
             ? pages.map((p, i) => (
               <form onSubmit={pageNum}>
-                <button className='directory__pages__button' id='page' type="submit" value={p + i + 1} key={p + i}>{i + 1}</button>
+                  <button className='directory__pages__button' id='page' type="submit" value={p + i + 1} key={p + i}>
+                    {i + 1}
+                  </button>
               </form>
             )) : <></>}
         </div>
       </main>
       <Footer />
-    </div>
+    </div >
   ) :
     (<div className='page__container'>
       <Header home={false} />
