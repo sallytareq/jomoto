@@ -27,7 +27,7 @@ function Header(props) {
   useEffect(() => { window.addEventListener('scroll', () => setScroll(window.scrollY > 50)); }, []);
 
   // Window size response
-  useEffect(() => { setMobile(windowSize()); }, []);
+  useEffect(() => { setMobile(windowSize(725)); }, []);
   useEffect(() => { window.addEventListener('resize', () => setMobile(windowSize(725))); }, []);
 
   return (

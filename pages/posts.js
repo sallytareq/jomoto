@@ -40,20 +40,22 @@ export default function Home({ posts, totalPosts }) {
   const pages = new Array(Math.ceil(totalPosts / 6)).fill(0)
   const [formData, setFormData] = useState();
   const [mobile, setMobile] = useState(false);
-  const [pageChange, setPageChange] = useState(1)
+  const [pageChange, setPageChange] = useState(false)
   const [submitted, setSubmitted] = useState(false);
   const [resultExists, setResultExists] = useState(false);
-  
+
   let end;
   let start;
   let allPosts = { posts }.posts;
   let allPostsCopy = [... { posts }.posts];
   let pagesPosts = allPostsCopy.splice(0, 6)
-  
-  console.log(pagesPosts);
+
 
   // handle pagination
-  const pageNum = (num) => {
+  const pageNum = (event) => {
+    event.preventDefault()
+    let num = event.target.page.value
+    console.log(event.target.page.value);
     allPostsCopy = [... { posts }.posts];
     if (num * 6 <= totalPosts) {
       start = num * 6 - 6;
@@ -66,20 +68,19 @@ export default function Home({ posts, totalPosts }) {
     } else {
       allPostsCopy = allPostsCopy.splice(totalPosts - ((num) * 6), totalPosts)
     }
-    useEffect(() => { setPageChange(num); }, []);
+    pagesPosts = allPostsCopy;
+    console.log(pagesPosts);
 
+    setPageChange(!pageChange)
   }
-  // pageNum(1)
-  // console.log(pagesPosts);
-  // pageNum(2)
-  // console.log(pagesPosts);
 
   // Window size response
-  useEffect(() => { setMobile(windowSize()); }, []);
+  useEffect(() => { setMobile(windowSize(1040)); }, []);
   useEffect(() => { window.addEventListener('resize', () => setMobile(windowSize(1040))); }, []);
 
   // handle input change
   const handleChange = (event) => {
+    setPageChange(false)
     setResultExists(false);
     setSubmitted(false);
     setFormData(event.target.value);
@@ -119,12 +120,18 @@ export default function Home({ posts, totalPosts }) {
           </Button>
         </form>
         <div className="directory__container">
-          {!submitted 
-            ? pagesPosts.map((post, index) => (
-              (!mobile)
-                ? <SinglePostWide post={post} key={index} />
-                : <SinglePost post={post} key={index} />
-            ))
+          {!submitted
+            ? (!pageChange
+              ? pagesPosts.map((post, index) => (
+                (!mobile)
+                  ? <SinglePostWide post={post} key={index} />
+                  : <SinglePost post={post} key={index} />
+              )) :
+              pagesPosts.map((post, index) => (
+                (!mobile)
+                  ? <SinglePostWide post={post} key={index} />
+                  : <SinglePost post={post} key={index} />
+              )))
             : ((resultExists)
               ? results.map((post, index) => (
                 (!mobile)
@@ -142,9 +149,11 @@ export default function Home({ posts, totalPosts }) {
             )}
         </div>
         <div className='directory__pages' dir='ltr'>
-          {!submitted 
+          {!submitted
             ? pages.map((p, i) => (
-              <button className='directory__pages__button' type='submit' onSubmit={pageNum(i + 1)} key={p + i}>{i + 1}</button>
+              <form onSubmit={pageNum}>
+                <button className='directory__pages__button' id='page' type="submit" value={p + i + 1} key={p + i}>{i + 1}</button>
+              </form>
             )) : <></>}
         </div>
       </main>
