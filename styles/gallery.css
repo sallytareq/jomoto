@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: repeat(4 , 1fr);
     gap: 15px;
-    padding-bottom: 10rem;
+    padding-bottom: 12rem;
 }
 .gallery__hero{
     width: calc(100vw - (100vw - 100%));

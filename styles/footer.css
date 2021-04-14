@@ -1,3 +1,7 @@
+.page__container {
+    position: relative;
+    min-height: 100vh;
+}
 .footer {
     position: absolute;
     bottom: 0;
@@ -5,15 +9,35 @@
     height: 8rem;
     border-top: 1px solid #eaeaea;
     display: flex;
-    justify-content: center;
+    align-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     background-color: black;
     color: white;
+    padding: 0 2rem;
+    flex-wrap: wrap;
 }
-.page__container {
-    position: relative;
-    min-height: 100vh;
+
+@media only screen and (max-width: 725px) {
+    .footer {
+        height: 11rem;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .footer__contact p{
+        display: none;
+    }
+
+} 
+
+.footer__contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .footer img {
@@ -38,6 +62,7 @@
 .footer__links .MuiIconButton-root{
     color: rgb(239 17 17 / 98%);
     padding: 6px;
+    margin: 10px;
 }
 
 .footer__links .MuiIconButton-root:hover {
@@ -50,4 +75,20 @@
     font-weight: 100 !important;
     margin-bottom: -1.5px !important;
 
+}
+
+.footer__info{
+    width: 16rem;
+    font-size: 11px;
+    text-align: center;
+}
+.footer p{
+    margin: 0;
+}
+.footer__info a{
+    cursor: pointer;
+    display: inline;
+}
+.footer__info p a{
+    text-decoration: underline;
 }
