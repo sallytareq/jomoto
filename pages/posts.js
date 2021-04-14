@@ -48,7 +48,7 @@ export default function Home({ posts, totalPosts }) {
   let allPostsCopy = [... { posts }.posts];
   allPostsCopy = allPostsCopy.splice(0, numberOfPostsPerPage);
   const pages = new Array(Math.ceil(totalPosts / numberOfPostsPerPage)).fill(0);
-
+console.log(allPosts , allPostsCopy);
   useEffect(() => { setPostsInPage(allPostsCopy); }, []);
 
   // handle pagination
@@ -82,7 +82,6 @@ export default function Home({ posts, totalPosts }) {
 
   // handle input change
   const handleChange = (event) => {
-    setPageChange(false)
     setResultExists(false);
     setSubmitted(false);
     setFormData(event.target.value);
@@ -124,11 +123,11 @@ export default function Home({ posts, totalPosts }) {
         </form>
         <div className="directory__container">
           {!submitted
-            ? (postsInPage.map((post, index) => (
+            ?postsInPage.map((post, index) => (
               (!mobile)
                 ? <SinglePostWide post={post} key={index} />
                 : <SinglePost post={post} key={index} />
-            )))
+            ))
             : ((resultExists)
               ? results.map((post, index) => (
                 (!mobile)

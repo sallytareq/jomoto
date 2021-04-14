@@ -1,17 +1,6 @@
-.carousel__img{
-    width: 100% !important;
-    /* width: 30rem !important; */
-    /* height: 30rem !important; */
-    display: block !important;
-}
-.carousel {
-    position: relative;
-    width: 30rem;
-    z-index: -1;
-}
 .directory{
     margin: 6rem 0 0 0;
-    padding-bottom: 6rem;
+    padding-bottom: 8rem;
 }
 .directory__container{
     min-height: 56.2vh;
