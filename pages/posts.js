@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Button from 'react-bootstrap/Button';
-// import SearchIcon from '@material-ui/icons/Search';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import Footer from '../components/footer';
 import SinglePost from '../components/post';
@@ -15,10 +15,11 @@ let results = [];
 export async function getServerSideProps() {
   // Ghost API fetch all posts
   const res = await fetch(
-    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&fields=title,slug,published_at,feature_image,custom_excerpt&include=tags`,
+    `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&limit=all&fields=title,slug,published_at,feature_image,custom_excerpt&include=tags`,
   );
-
   const data = await res.json();
+  // console.log(data);
+  const totalPosts = data.meta.pagination.total;
   const { posts } = data;
 
   if (!posts) {
@@ -31,24 +32,56 @@ export async function getServerSideProps() {
   }
 
   return {
-    props: { posts },
+    props: { posts, totalPosts },
   };
 }
 
-export default function Home({ posts }) {
+export default function Home({ posts, totalPosts }) {
   const [formData, setFormData] = useState();
   const [mobile, setMobile] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [postsInPage, setPostsInPage] = useState([]);
   const [resultExists, setResultExists] = useState(false);
+  
+  let numberOfPostsPerPage = 6;
+  let allPosts = { posts }.posts;
+  let allPostsCopy = [... { posts }.posts];
+  allPostsCopy = allPostsCopy.splice(0, numberOfPostsPerPage);
+  const pages = new Array(Math.ceil(totalPosts / numberOfPostsPerPage)).fill(0);
+  
+  useEffect(() => { setPostsInPage(allPostsCopy); }, []);
 
-  const allPosts = { posts }.posts;
+  // handle pagination
+  const pageNum = (event) => {
+    event.preventDefault()
+
+    let end;
+    let start;
+    let num = event.target.page.value
+    allPostsCopy = [... { posts }.posts];
+
+    if (num * numberOfPostsPerPage <= totalPosts) {
+      start = num * numberOfPostsPerPage - numberOfPostsPerPage;
+
+      if (start + (numberOfPostsPerPage-1) < totalPosts) {
+        end = numberOfPostsPerPage
+      } else {
+        end = totalPosts
+      }
+      allPostsCopy = allPostsCopy.splice(start, end)
+    } else {
+      allPostsCopy = allPostsCopy.splice(totalPosts - ((num) * numberOfPostsPerPage), totalPosts)
+    }
+    setPostsInPage(allPostsCopy);
+  }
 
   // Window size response
-  useEffect(() => { setMobile(windowSize()); }, []);
+  useEffect(() => { setMobile(windowSize(1040)); }, []);
   useEffect(() => { window.addEventListener('resize', () => setMobile(windowSize(1040))); }, []);
 
   // handle input change
   const handleChange = (event) => {
+    setPageChange(false)
     setResultExists(false);
     setSubmitted(false);
     setFormData(event.target.value);
@@ -77,7 +110,7 @@ export default function Home({ posts }) {
     setSubmitted(true);
   };
 
-  return (
+  return { posts } || resultExists ? (
     <div className='page__container'>
       <Header home={false} />
       <main className="directory" dir="rtl">
@@ -89,11 +122,11 @@ export default function Home({ posts }) {
         </form>
         <div className="directory__container">
           {!submitted
-            ? posts.map((post, index) => (
+            ? (postsInPage.map((post, index) => (
               (!mobile)
                 ? <SinglePostWide post={post} key={index} />
                 : <SinglePost post={post} key={index} />
-            ))
+            )))
             : ((resultExists)
               ? results.map((post, index) => (
                 (!mobile)
@@ -110,8 +143,41 @@ export default function Home({ posts }) {
               )
             )}
         </div>
+        <div className='directory__pages' dir='ltr'>
+          {!submitted
+            ? pages.map((p, i) => (
+              <form onSubmit={pageNum}>
+                <button className='directory__pages__button' id='page' type="submit" value={p + i + 1} key={p + i}>{i + 1}</button>
+              </form>
+            )) : <></>}
+        </div>
       </main>
       <Footer />
     </div>
-  );
+  ) :
+    (<div className='page__container'>
+      <Header home={false} />
+      <main className="directory" dir="rtl">
+        <form className="search__form" onSubmit={handleSubmit}>
+          <input id="search" name="search" type="text" placeholder="بحث" onChange={handleChange} className="search__input" />
+          <Button variant="dark" type="submit" className="search__button" >
+            <img src="https://img.icons8.com/ios/25/ffffff/search--v1.png" />
+          </Button>
+        </form>
+        <div className="directory__container">
+          <Skeleton variant="text" />
+
+          <Skeleton variant="text" />
+
+          <Skeleton variant="text" />
+
+          <Skeleton variant="text" />
+
+          <Skeleton variant="text" />
+
+          <Skeleton variant="text" />
+        </div>
+      </main>
+      <Footer />
+    </div>);
 }

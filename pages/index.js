@@ -43,7 +43,7 @@ export default function Home(props) {
   const [mobile, setMobile] = useState(false);
 
   // Window size response 
-  useEffect(() => { setMobile(windowSize()) }, []);
+  useEffect(() => { setMobile(windowSize(1345)) }, []);
   useEffect(() => { window.addEventListener("resize", () => setMobile(windowSize(1345))) }, []);
 
   return (
