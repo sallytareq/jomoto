@@ -49,7 +49,7 @@ export default function Home(props) {
   return (
     <div className='page__container'>
       <Header home={true} />
-      <main className={styles.main}>
+      <main className="directory">
 
         {/* <h1 className={styles.title}>JoMoto Blog</h1> */}
         {!mobile ? (<><FeaturePost post={props.feature} /><hr className='home__line' /></>) : <></>}
