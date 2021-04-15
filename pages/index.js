@@ -50,11 +50,10 @@ export default function Home(props) {
     <div className='page__container'>
       <Header home={true} />
       <main className="directory">
-
-        {/* <h1 className={styles.title}>JoMoto Blog</h1> */}
-        {!mobile ? (<><FeaturePost post={props.feature} /><hr className='home__line' /></>) : <></>}
+        {!mobile ? <FeaturePost post={props.feature} /> : <></>}
         {!mobile ?
           (<div className="post">
+            <hr className='home__line' />
             <SinglePost post={props.posts[0]} />
             <SinglePost post={props.posts[1]} />
             <SinglePost post={props.posts[2]} />
