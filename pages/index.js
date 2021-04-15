@@ -7,8 +7,6 @@ import FeaturePost from '../components/featurePost'
 import SinglePostWide from '../components/postWide'
 import Header, { windowSize } from '../components/header'
 
-import styles from '../styles/Home.module.css'
-
 const { BLOG_URL, CONTENT_API_KEY } = process.env
 
 export async function getStaticProps(context) {

@@ -27,6 +27,16 @@
     width: 55vw;
 }
 
+figure{
+    text-align: center;
+    width: 90%;
+}
+
+iframe{
+    width: 90%;
+    height: 20rem;
+}
+
 @media only screen and (max-width: 925px) {
     .single__content{
         width: 80vw;
