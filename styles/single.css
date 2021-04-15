@@ -41,4 +41,11 @@ iframe{
     .single__content{
         width: 80vw;
     }
+    figure{
+        width: 100%;
+    }
+    iframe{
+        width: 100%;
+        height: 21rem;
+    }
 } 
