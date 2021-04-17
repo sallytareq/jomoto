@@ -7,6 +7,7 @@ import Footer from '../components/footer';
 import SinglePost from '../components/post';
 import SinglePostWide from '../components/postWide';
 import Header, { windowSize } from '../components/header';
+import { formatMs } from '@material-ui/core';
 
 const { BLOG_URL, CONTENT_API_KEY } = process.env;
 
@@ -41,12 +42,13 @@ export default function Home({ posts, totalPosts }) {
   const [mobile, setMobile] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [postsInPage, setPostsInPage] = useState([]);
+  const [inputChange, setInputChange] = useState(false);
   const [resultExists, setResultExists] = useState(false);
   const pages = new Array(Math.ceil(totalPosts / numberOfPostsPerPage)).fill(0);
 
   let allPosts = { posts }.posts;
   let allPostsCopy = [... { posts }.posts];
-  
+
   allPostsCopy = allPostsCopy.splice(0, numberOfPostsPerPage);
   useEffect(() => { setPostsInPage(allPostsCopy); }, []);
 
@@ -81,6 +83,7 @@ export default function Home({ posts, totalPosts }) {
 
   // handle input change
   const handleChange = (event) => {
+    setInputChange(true);
     setResultExists(false);
     setSubmitted(false);
     setFormData(event.target.value);
@@ -90,18 +93,20 @@ export default function Home({ posts, totalPosts }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     results = [];
-
-    allPosts.forEach((post) => {
-      let exists = false;
-      post.tags.forEach((tag) => {
-        if (formData.includes(tag.name)) {
-          exists = true;
+    if (inputChange) {
+      setInputChange(false)
+      allPosts.forEach((post) => {
+        let exists = false;
+        post.tags.forEach((tag) => {
+          if (formData.toLowerCase().includes(tag.name)) {
+            exists = true;
+          }
+        });
+        if (exists) {
+          results.push(post);
         }
       });
-      if (exists) {
-        results.push(post);
-      }
-    });
+    }
 
     if (results.length > 0) {
       setResultExists(true);
@@ -122,7 +127,7 @@ export default function Home({ posts, totalPosts }) {
         </form>
         <div className="directory__container">
           {!submitted
-            ?postsInPage.map((post, index) => (
+            ? postsInPage.map((post, index) => (
               (!mobile)
                 ? <SinglePostWide post={post} key={index} />
                 : <SinglePost post={post} key={index} />
@@ -147,9 +152,9 @@ export default function Home({ posts, totalPosts }) {
           {!submitted
             ? pages.map((p, i) => (
               <form onSubmit={pageNum}>
-                  <button className='directory__pages__button' id='page' type="submit" value={p + i + 1} key={p + i}>
-                    {i + 1}
-                  </button>
+                <button className='directory__pages__button' id='page' type="submit" value={p + i + 1} key={p + i + 10}>
+                  {i + 1}
+                </button>
               </form>
             )) : <></>}
         </div>
