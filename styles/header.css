@@ -3,7 +3,7 @@
     top: 0;
     width:calc(100vw - (100vw - 100%));
     margin: 0;
-    padding: 0.8rem 1rem;
+    padding: .4rem 1.5rem .4rem 1rem;
     padding-right: 2rem;
     display: flex;
     align-content: center;

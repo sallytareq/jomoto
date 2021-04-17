@@ -60,13 +60,13 @@
 }
 
 .footer__links .MuiIconButton-root{
-    color: rgb(239 17 17 / 98%);
-    padding: 6px;
+    color: #084298;
+    padding: 4px;
     margin: 10px;
 }
 
 .footer__links .MuiIconButton-root:hover {
-    background-color: rgb(255 255 255 / 50%);
+    background-color: #c4c4f999;
 }
 
 .footer__rights .MuiSvgIcon-root {

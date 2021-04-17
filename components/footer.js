@@ -11,10 +11,10 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 function Footer() {
   return (
     <div>
-      <footer id="footer" className="footer">
+      <footer id="footer" className="footer" dir='rtl'>
         <div className="footer__contact">
           <div className="footer__rights">
-            <p>Connect with us</p>
+            <p>لمشاهدة المزيد</p>
           </div>
           <div className="footer__links">
             <IconButton>
