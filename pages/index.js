@@ -52,23 +52,23 @@ export default function Home(props) {
         {!mobile ?
           (<div className="post">
             <hr className='home__line' />
-            <SinglePost post={props.posts[0]} />
-            <SinglePost post={props.posts[1]} />
-            <SinglePost post={props.posts[2]} />
+            <SinglePost post={props.posts[0]} key={0}/>
+            <SinglePost post={props.posts[1]} key={1}/>
+            <SinglePost post={props.posts[2]} key={2}/>
             <hr className='home__line' />
-            <SinglePostWide post={props.posts[3]} />
-            <SinglePostWide post={props.posts[4]} />
+            <SinglePostWide post={props.posts[3]} key={3}/>
+            <SinglePostWide post={props.posts[4]} key={4}/>
           </div>)
           :
           (<div className="post">
-            <SinglePost post={props.feature} />
-            <SinglePost post={props.posts[0]} />
+            <SinglePost post={props.feature} key={0}/>
+            <SinglePost post={props.posts[0]} key={1}/>
             <hr className='home__line' />
-            <SinglePost post={props.posts[1]} />
-            <SinglePost post={props.posts[2]} />
+            <SinglePost post={props.posts[1]} key={2}/>
+            <SinglePost post={props.posts[2]} key={3}/>
             <hr className='home__line' />
-            <SinglePost post={props.posts[3]} />
-            <SinglePost post={props.posts[4]} />
+            <SinglePost post={props.posts[3]} key={4}/>
+            <SinglePost post={props.posts[4]} key={5}/>
           </div>)
         }
       </main>
