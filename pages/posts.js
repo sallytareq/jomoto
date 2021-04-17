@@ -18,7 +18,6 @@ export async function getServerSideProps() {
     `${BLOG_URL}/ghost/api/v3/content/posts/?key=${CONTENT_API_KEY}&limit=all&fields=title,slug,published_at,feature_image,custom_excerpt&include=tags`,
   );
   const data = await res.json();
-  // console.log(data);
   const totalPosts = data.meta.pagination.total;
   const { posts } = data;
 
@@ -37,18 +36,18 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ posts, totalPosts }) {
+  const numberOfPostsPerPage = 6;
   const [formData, setFormData] = useState();
   const [mobile, setMobile] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [postsInPage, setPostsInPage] = useState([]);
   const [resultExists, setResultExists] = useState(false);
+  const pages = new Array(Math.ceil(totalPosts / numberOfPostsPerPage)).fill(0);
 
-  let numberOfPostsPerPage = 6;
   let allPosts = { posts }.posts;
   let allPostsCopy = [... { posts }.posts];
+  
   allPostsCopy = allPostsCopy.splice(0, numberOfPostsPerPage);
-  const pages = new Array(Math.ceil(totalPosts / numberOfPostsPerPage)).fill(0);
-console.log(allPosts , allPostsCopy);
   useEffect(() => { setPostsInPage(allPostsCopy); }, []);
 
   // handle pagination
@@ -95,7 +94,7 @@ console.log(allPosts , allPostsCopy);
     allPosts.forEach((post) => {
       let exists = false;
       post.tags.forEach((tag) => {
-        if (tag.name.includes(formData)) {
+        if (formData.includes(tag.name)) {
           exists = true;
         }
       });
