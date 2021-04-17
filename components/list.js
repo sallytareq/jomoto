@@ -13,6 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 const useStyles = makeStyles((theme) => ({
   // style for material UI list
   root: {
+    direction: 'rtl',
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
@@ -39,7 +40,8 @@ export default function NestedList() {
     >
       <ListItem>
         <Link href="/">
-          <ListItemText primary="JoMoto Blog" />
+          {/* <ListItemText primary="JoMoto Blog" /> */}
+          <img className='logo' src='/icon1.ico'/>
         </Link>
         {!open ? <MenuIcon onClick={handleClick} /> : <CloseIcon onClick={handleClick} />}
       </ListItem>
@@ -47,22 +49,22 @@ export default function NestedList() {
         <List component="div" disablePadding>
           <ListItem button className={classes.nested}>
             <Link href="/">
-              <ListItemText primary="Home" />
+              <ListItemText primary="الرئيسية" />
             </Link>
           </ListItem>
           <ListItem button className={classes.nested}>
             <Link href="/posts">
-              <ListItemText primary="Posts" />
+              <ListItemText primary="المنشورات" />
             </Link>
           </ListItem>
           <ListItem button className={classes.nested}>
             <Link href="/gallery">
-              <ListItemText primary="Gallery" />
+              <ListItemText primary="الإستديو" />
             </Link>
           </ListItem>
           <ListItem button className={classes.nested}>
             <Link href="/about">
-              <ListItemText primary="About" />
+              <ListItemText primary="من أنا" />
             </Link>
           </ListItem>
         </List>

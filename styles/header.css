@@ -55,6 +55,7 @@
 }
 .navbar__mobile .MuiCollapse-container .MuiListItem-root .MuiListItemText-root{
     color: rgba(255, 255, 255, 0.65) !important;
+    text-align: right;
 }
 .navbar__mobile .MuiCollapse-container .MuiListItem-root .MuiListItemText-root:hover {
     color: rgba(255, 255, 255, 0.85) !important;
@@ -64,6 +65,7 @@
 }
 .navbar__mobile .navbar__top .MuiCollapse-container .MuiListItem-root .MuiListItemText-root{
     color: rgba(0, 0, 0, 0.55) !important;
+    text-align: right;
 }
 .navbar__mobile .navbar__top .MuiCollapse-container .MuiListItem-root .MuiListItemText-root:hover {
     color: rgba(0, 0, 0, 0.75) !important;
@@ -71,4 +73,11 @@
 .navbar__mobile .MuiList-root {
     max-width: 100%;
     width: 100%;
+}
+.logo{
+    width: 50px;
+    cursor: pointer;
+}
+li.MuiListItem-root.MuiListItem-gutters{
+    justify-content: space-between;
 }
