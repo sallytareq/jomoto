@@ -64,3 +64,6 @@
     background: transparent;
     text-decoration: underline;
 }
+.directory__pages__button:focus {
+    color: #084298;
+}

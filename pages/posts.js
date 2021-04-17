@@ -151,8 +151,8 @@ export default function Home({ posts, totalPosts }) {
         <div className='directory__pages' dir='ltr'>
           {!submitted
             ? pages.map((p, i) => (
-              <form onSubmit={pageNum}>
-                <button className='directory__pages__button' id='page' type="submit" value={p + i + 1} key={p + i + 10}>
+              <form onSubmit={pageNum}  key={p + i + 10}>
+                <button className='directory__pages__button' id='page' type="submit" value={p + i + 1}>
                   {i + 1}
                 </button>
               </form>
