@@ -44,17 +44,6 @@
     margin-bottom: 1rem;
 }
 
-/* .directory__container .post__wide__container:last-child ,.directory__container .post__container:last-child {
-    margin-left: auto;
-} */
-
-@media only screen and (min-width: 1040px) {
-    .directory__container .post__wide__container:last-child ,.directory__container .post__container:last-child {
-        margin-left: auto;
-        margin-right: 5rem;
-    }
-} 
-
 .directory__pages{
     padding: 2rem;
     width: 100%;
