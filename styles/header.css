@@ -18,8 +18,11 @@
     z-index: 1;
 }
 .navbar__top{
-    background-color:rgba(0, 0, 0, 0.021);
+    /* background-color:rgba(0, 0, 0, 0.021); */
+    background-color: #00000423 !important;
+    backdrop-filter: blur(2px);
     color:black;
+    border-bottom: rgba(0, 0, 0, 0.050) solid 1px;
 }
 .nav__hidden{
     display: none;
@@ -49,26 +52,17 @@
 .MuiList-root , .MuiListItem-root , .MuiTypography-root{
     background: transparent !important;
     font: inherit !important;
+    padding: 0.3rem 10px 0.3rem 1rem !important;
 }
 .navbar__mobile .MuiListItem-root .MuiListItemText-root , .navbar__mobile .MuiSvgIcon-root , .navbar__mobile .MuiListItem-root .MuiListItemText-root , .navbar__mobile .MuiSvgIcon-root {
     color: whitesmoke !important;
 }
 .navbar__mobile .MuiCollapse-container .MuiListItem-root .MuiListItemText-root{
-    color: rgba(255, 255, 255, 0.65) !important;
+    color: rgba(255, 255, 255, 0.75) !important;
     text-align: right;
 }
 .navbar__mobile .MuiCollapse-container .MuiListItem-root .MuiListItemText-root:hover {
-    color: rgba(255, 255, 255, 0.85) !important;
-}
-.navbar__mobile .navbar__top .MuiListItem-root .MuiListItemText-root , .navbar__mobile .navbar__top .MuiSvgIcon-root , .navbar__mobile .navbar__top .MuiListItem-root .MuiListItemText-root , .navbar__mobile .navbar__top .MuiSvgIcon-root {
-    color: black !important;
-}
-.navbar__mobile .navbar__top .MuiCollapse-container .MuiListItem-root .MuiListItemText-root{
-    color: rgba(0, 0, 0, 0.55) !important;
-    text-align: right;
-}
-.navbar__mobile .navbar__top .MuiCollapse-container .MuiListItem-root .MuiListItemText-root:hover {
-    color: rgba(0, 0, 0, 0.75) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
 }
 .navbar__mobile .MuiList-root {
     max-width: 100%;
@@ -76,8 +70,15 @@
 }
 .logo{
     width: 50px;
+    margin-right: 1rem;
     cursor: pointer;
 }
 li.MuiListItem-root.MuiListItem-gutters{
     justify-content: space-between;
+}
+.navbar-light .navbar-nav .nav-link{
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    color: rgba(255, 255, 255, 0.95) !important;
 }
