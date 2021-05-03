@@ -140,10 +140,10 @@ export default function Home({ posts, totalPosts }) {
               ))
               : (
                 <div className="directory__notFound" dir="ltr">
-                  <p>
+                  <p style={{textAlign:"center"}}>
                     No results found for {formData}. Try another search
                   </p>
-                  <img src="https://img.icons8.com/fluent-systems-filled/96/000000/shift-up.png" />
+                  {/* <img src="https://img.icons8.com/fluent-systems-filled/96/000000/shift-up.png" /> */}
                 </div>
               )
             )}
