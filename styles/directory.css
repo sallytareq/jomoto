@@ -14,9 +14,13 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    width: 90vw;
+    overflow-wrap: break-word;
 }
 .directory__notFound p{
     margin: 6px 0;
+    width: 85%;
+    text-align: center;
 }
 .search__form{
     display: flex;
