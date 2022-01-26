@@ -36,6 +36,7 @@ function Header(props) {
         <script data-ad-client="ca-pub-2321742861441338" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <title>JoMoto</title>
         <link rel="icon" href="/icon1.ico" />
+        <meta property="fb:pages" content="103244994643389" />
       </Head>
       <header className={props.home ? 'header__home' : 'header'} dir="rtl">
         <div className={mobile ? 'nav__hidden' : 'navbar__nav'}>
